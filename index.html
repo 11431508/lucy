@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大學與科系決策分析平台</title>
+  <meta name="description" content="以生活、薪資、科系適配三維度，量化比較北京大學法律、臺灣大學法律、香港中文大學法律、香港大學會計與金融的決策分析平台。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 第三方函式庫（圖表、PDF）。以 defer 於 DOM 就緒前載入。 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <div class="boot glass">
+      <div class="spinner"></div>
+      <p>載入分析引擎與資料庫…</p>
+    </div>
+  </div>
+
+  <!-- 主程式以 ES6 Modules 載入；需經本機伺服器開啟（見 README）。 -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>

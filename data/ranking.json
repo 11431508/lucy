@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "notice": "QS／THE 綜合與學科排名為公開榜單之近年區間值；資源類指標（0–10）為多來源綜合評估，credibility 標示可信度，數值可隨新資料更新。",
+  "dimensions": [
+    { "key": "schoolBrand",       "label": "學校品牌", "type": "score" },
+    { "key": "programBrand",      "label": "科系品牌", "type": "score" },
+    { "key": "qsWorld",           "label": "QS 世界排名", "type": "rank" },
+    { "key": "theWorld",          "label": "THE 世界排名", "type": "rank" },
+    { "key": "subjectRank",       "label": "學科排名", "type": "rank" },
+    { "key": "employerReputation","label": "雇主聲譽", "type": "score" },
+    { "key": "alumniResource",    "label": "校友資源", "type": "score" },
+    { "key": "facultyResource",   "label": "教授資源", "type": "score" },
+    { "key": "researchResource",  "label": "研究資源", "type": "score" },
+    { "key": "exchangeResource",  "label": "交換資源", "type": "score" },
+    { "key": "internshipResource","label": "實習資源", "type": "score" },
+    { "key": "regionalJobAdvantage","label": "地區就業優勢", "type": "score" },
+    { "key": "internationalRecognition","label": "國際認可度", "type": "score" }
+  ],
+  "records": {
+    "pku_law": {
+      "schoolBrand": 10, "programBrand": 10,
+      "qsWorld": 14, "theWorld": 13, "subjectRank": 20,
+      "employerReputation": 10, "alumniResource": 10, "facultyResource": 10,
+      "researchResource": 10, "exchangeResource": 7, "internshipResource": 9,
+      "regionalJobAdvantage": 10, "internationalRecognition": 8,
+      "credibility": { "qsWorld": "high", "theWorld": "high", "subjectRank": "medium", "resource": "medium" },
+      "source": { "type": "官方排名榜單", "name": "QS/THE World University Rankings", "url": "https://www.topuniversities.com/", "year": 2025 }
+    },
+    "ntu_law": {
+      "schoolBrand": 9, "programBrand": 9,
+      "qsWorld": 68, "theWorld": 172, "subjectRank": 45,
+      "employerReputation": 8, "alumniResource": 9, "facultyResource": 8,
+      "researchResource": 8, "exchangeResource": 6, "internshipResource": 7,
+      "regionalJobAdvantage": 9, "internationalRecognition": 6,
+      "credibility": { "qsWorld": "high", "theWorld": "high", "subjectRank": "medium", "resource": "medium" },
+      "source": { "type": "官方排名榜單", "name": "QS/THE World University Rankings", "url": "https://www.topuniversities.com/", "year": 2025 }
+    },
+    "cuhk_law": {
+      "schoolBrand": 9, "programBrand": 8,
+      "qsWorld": 36, "theWorld": 44, "subjectRank": 40,
+      "employerReputation": 8, "alumniResource": 8, "facultyResource": 8,
+      "researchResource": 8, "exchangeResource": 9, "internshipResource": 8,
+      "regionalJobAdvantage": 8, "internationalRecognition": 9,
+      "credibility": { "qsWorld": "high", "theWorld": "high", "subjectRank": "medium", "resource": "medium" },
+      "source": { "type": "官方排名榜單", "name": "QS/THE World University Rankings", "url": "https://www.topuniversities.com/", "year": 2025 }
+    },
+    "hku_af": {
+      "schoolBrand": 10, "programBrand": 9,
+      "qsWorld": 17, "theWorld": 35, "subjectRank": 30,
+      "employerReputation": 9, "alumniResource": 9, "facultyResource": 9,
+      "researchResource": 9, "exchangeResource": 10, "internshipResource": 10,
+      "regionalJobAdvantage": 10, "internationalRecognition": 10,
+      "credibility": { "qsWorld": "high", "theWorld": "high", "subjectRank": "medium", "resource": "medium" },
+      "source": { "type": "官方排名榜單", "name": "QS/THE World University Rankings", "url": "https://www.topuniversities.com/", "year": 2025 }
+    }
+  }
+}

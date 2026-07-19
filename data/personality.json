@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "questions": [
+    { "id": "q1",  "key": "textTolerance",  "text": "我能接受且擅長長時間閱讀大量文字。" },
+    { "id": "q2",  "key": "stressTolerance","text": "我能接受且擅長高壓工作。" },
+    { "id": "q3",  "key": "interestSocial", "text": "我能接受且擅長利益導向的人際互動。" },
+    { "id": "q4",  "key": "ethicsTolerance","text": "我能接受且擅長處理具有道德兩難或灰色地帶的問題。" },
+    { "id": "q5",  "key": "communication",  "text": "我能接受且擅長與不同背景的人溝通。" },
+    { "id": "q6",  "key": "meticulousness", "text": "我做事細心且能長時間維持高準確率。" },
+    { "id": "q7",  "key": "numeracy",       "text": "我能接受且擅長分析大量數字與資料。" },
+    { "id": "q8",  "key": "autonomy",       "text": "我喜歡自主規劃工作。" },
+    { "id": "q9",  "key": "logic",          "text": "我能接受且擅長分析複雜問題並進行邏輯推理。" },
+    { "id": "q10", "key": "decision",       "text": "我能在高度不確定情況下保持冷靜並做出決策。" }
+  ],
+  "fitConfigs": {
+    "pku_law": {
+      "label": "北京大學 法律",
+      "items": [
+        { "key": "textTolerance",  "weight": 1 },
+        { "key": "stressTolerance","weight": 1 },
+        { "key": "interestSocial", "weight": 1 },
+        { "key": "ethicsTolerance","weight": 1 },
+        { "key": "logic",          "weight": 1 }
+      ],
+      "fixedAdjustment": -2,
+      "note": "採高容忍文字、抗壓性、利益性社交、道德承受度、邏輯分析五項，固定減 2 分。"
+    },
+    "ntu_law": {
+      "label": "臺灣大學 法律",
+      "items": [
+        { "key": "textTolerance",  "weight": 1 },
+        { "key": "stressTolerance","weight": 1 },
+        { "key": "ethicsTolerance","weight": 1 },
+        { "key": "logic",          "weight": 1 }
+      ],
+      "fixedAdjustment": 4,
+      "note": "採高容忍文字、抗壓性、道德承受度、邏輯分析四項，固定加 4 分。"
+    },
+    "cuhk_law": {
+      "label": "香港中文大學 法律",
+      "items": [
+        { "key": "textTolerance",  "weight": 1 },
+        { "key": "stressTolerance","weight": 1 },
+        { "key": "ethicsTolerance","weight": 1 },
+        { "key": "interestSocial", "weight": 2 },
+        { "key": "logic",          "weight": 1 }
+      ],
+      "fixedAdjustment": 0,
+      "note": "採高容忍文字、抗壓性、道德承受度、利益性社交（權重兩倍）、邏輯分析。"
+    },
+    "hku_af": {
+      "label": "香港大學 會計與金融",
+      "items": [
+        { "key": "stressTolerance","weight": 1 },
+        { "key": "communication",  "weight": 1 },
+        { "key": "autonomy",       "weight": 1 },
+        { "key": "meticulousness", "weight": 1 },
+        { "key": "textTolerance",  "weight": 1 },
+        { "key": "numeracy",       "weight": 1 },
+        { "key": "logic",          "weight": 1 },
+        { "key": "decision",       "weight": 1 }
+      ],
+      "fixedAdjustment": 0,
+      "note": "採抗壓性、溝通能力、自主性、細心、高容忍文字與數字、邏輯分析、決策能力。"
+    }
+  }
+}

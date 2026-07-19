@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "description": "集中管理所有計算公式與係數。畫面與引擎不得硬編碼任何數字，一律讀取此檔。更換資料庫或調整公式版本只需修改此檔。",
+  "updatedAt": "2026-07-18",
+
+  "weights": {
+    "life":   { "min": 0, "max": 10, "default": 5, "label": "生活" },
+    "salary": { "min": 0, "max": 20, "default": 10, "label": "薪資" },
+    "fit":    { "min": 0, "max": 10, "default": 5, "label": "科系適配" }
+  },
+
+  "life": {
+    "items": [
+      { "key": "achievement", "label": "生活成就感", "weight": 3, "min": 1, "max": 10 },
+      { "key": "campus",      "label": "校園環境",   "weight": 3, "min": 1, "max": 10 },
+      { "key": "living",      "label": "生活環境",   "weight": 3, "min": 1, "max": 10 },
+      { "key": "city",        "label": "城市",       "weight": 1, "min": 1, "max": 10 }
+    ],
+    "divisor": 10,
+    "maxScore": 10,
+    "comment": "生活分數 =(成就感×3 + 校園×3 + 生活×3 + 城市×1) / 10，最高 10 分。"
+  },
+
+  "salary": {
+    "graduateWeight": 0.2,
+    "careerAverageWeight": 0.8,
+    "twdPerPoint": 10000,
+    "maxScore": 10,
+    "comment": "薪資基準分 =(畢業薪資×0.2 + 職涯平均薪資×0.8) 換算台幣後每 1 萬元 = 1 分，再除以生活成本指數。四校中最高者標準化為 10 分。",
+    "prBands": [
+      { "key": "pr99_90", "label": "PR99–90", "description": "你認為自己的努力程度在人群中位居前段" },
+      { "key": "pr89_75", "label": "PR89–75", "description": "你認為自己的努力程度屬中上" },
+      { "key": "pr74_50", "label": "PR74–50", "description": "你認為自己的努力程度屬中段" },
+      { "key": "pr50",    "label": "PR50 左右", "description": "你認為自己的努力程度約在中位數" }
+    ]
+  },
+
+  "fit": {
+    "optionValues": [
+      { "label": "完全不符合", "value": 0.4 },
+      { "label": "不太符合",   "value": 0.8 },
+      { "label": "無感",       "value": 1.2 },
+      { "label": "大致符合",   "value": 1.6 },
+      { "label": "完全符合",   "value": 2.0 }
+    ],
+    "maxScore": 10,
+    "minScore": 0,
+    "comment": "各校依其採用題目加總後，套用固定加減分，再對四校做 0–10 標準化。"
+  },
+
+  "total": {
+    "displayMax": 100,
+    "comment": "總分 = 生活分數×生活比例 + 薪資分數×薪資比例 + 適配分數×適配比例，再以 100 分制呈現。"
+  }
+}

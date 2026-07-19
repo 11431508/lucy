@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "description": "生活成本指數：由 city.json 各城市月度成本加總後，對四所學校所在城市之平均值標準化（四校平均 = 1）。cachedIndex 為預先計算之快取值；costEngine 於載入時會依 city.json 重新計算並覆寫，確保更換城市資料即自動更新。",
+  "baseline": "four_school_average",
+  "baselineValue": 1,
+  "cachedIndex": {
+    "beijing": 0.772,
+    "taipei": 0.744,
+    "hongkong": 1.242
+  },
+  "cachedFourSchoolAverageTotalTWD": 53125
+}

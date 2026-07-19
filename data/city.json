@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "currency": "TWD",
+  "notice": "各城市單月生活成本（新臺幣）為公開生活成本資料之綜合估值，供成本指數標準化之用。稅負為單身受薪者之月度等值估算。",
+  "components": [
+    { "key": "rent",        "label": "房租" },
+    { "key": "food",        "label": "餐飲" },
+    { "key": "transport",   "label": "交通" },
+    { "key": "medical",     "label": "醫療" },
+    { "key": "entertainment","label": "娛樂" },
+    { "key": "tax",         "label": "稅負" },
+    { "key": "dailyGoods",  "label": "日常用品" }
+  ],
+  "cities": {
+    "beijing": {
+      "label": "北京",
+      "rent": 15000, "food": 12000, "transport": 2000, "medical": 2000,
+      "entertainment": 4000, "tax": 3000, "dailyGoods": 3000,
+      "source": { "type": "中國國家統計局／大型生活成本調查", "name": "Numbeo / 國家統計局", "url": "https://data.stats.gov.cn/", "year": 2024, "credibility": "medium" }
+    },
+    "taipei": {
+      "label": "臺北",
+      "rent": 15000, "food": 12000, "transport": 1500, "medical": 1500,
+      "entertainment": 4000, "tax": 2500, "dailyGoods": 3000,
+      "source": { "type": "臺灣政府公開資料／主計總處", "name": "行政院主計總處 家庭收支調查", "url": "https://www.dgbas.gov.tw/", "year": 2024, "credibility": "medium" }
+    },
+    "hongkong": {
+      "label": "香港",
+      "rent": 30000, "food": 18000, "transport": 2500, "medical": 2500,
+      "entertainment": 6000, "tax": 2000, "dailyGoods": 5000,
+      "source": { "type": "香港政府統計處／大型生活成本調查", "name": "香港政府統計處 / Numbeo", "url": "https://www.censtatd.gov.hk/", "year": 2024, "credibility": "medium" }
+    }
+  }
+}

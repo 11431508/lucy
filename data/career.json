@@ -1,0 +1,88 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "notice": "就業比例為各校依所在市場之綜合估算（credibility 標示可信度）。PR 修正後比例由 salaryEngine 依 prTiers 於執行期計算，非靜態值。",
+
+  "prTiers": {
+    "comment": "PR 不直接加薪，而是改變各職涯錄取分布。各 tier 對 PR 區間之相對權重乘數，乘上基礎就業比例後重新正規化即為『PR 修正後比例』。",
+    "elite": { "pr99_90": 2.4, "pr89_75": 1.3, "pr74_50": 0.5, "pr50": 0.25 },
+    "high":  { "pr99_90": 1.7, "pr89_75": 1.2, "pr74_50": 0.8, "pr50": 0.5 },
+    "mid":   { "pr99_90": 1.0, "pr89_75": 1.05,"pr74_50": 1.05,"pr50": 1.0 },
+    "broad": { "pr99_90": 0.5, "pr89_75": 0.8, "pr74_50": 1.2, "pr50": 1.7 }
+  },
+
+  "careerSets": {
+    "law": {
+      "label": "法律",
+      "careers": [
+        { "id": "red_circle",   "label": "紅圈律所",     "tier": "elite" },
+        { "id": "magic_circle", "label": "Magic Circle", "tier": "elite" },
+        { "id": "intl_firm",    "label": "國際律所",     "tier": "high" },
+        { "id": "boutique_firm","label": "精品律所",     "tier": "mid" },
+        { "id": "general_firm", "label": "一般律所",     "tier": "broad" },
+        { "id": "judge",        "label": "法官",         "tier": "high" },
+        { "id": "prosecutor",   "label": "檢察官",       "tier": "high" },
+        { "id": "in_house",     "label": "企業法務",     "tier": "mid" },
+        { "id": "civil_servant","label": "公務員",       "tier": "broad" },
+        { "id": "academia",     "label": "學術",         "tier": "mid" },
+        { "id": "other",        "label": "其他",         "tier": "broad" }
+      ]
+    },
+    "finance": {
+      "label": "會計與金融",
+      "careers": [
+        { "id": "ib",            "label": "Investment Banking", "tier": "elite" },
+        { "id": "pe",            "label": "Private Equity",     "tier": "elite" },
+        { "id": "hf",            "label": "Hedge Fund",         "tier": "elite" },
+        { "id": "am",            "label": "Asset Management",   "tier": "high" },
+        { "id": "commercial",    "label": "Commercial Banking", "tier": "broad" },
+        { "id": "corp_finance",  "label": "Corporate Finance",  "tier": "mid" },
+        { "id": "big4_audit",    "label": "Big Four Audit",     "tier": "broad" },
+        { "id": "big4_advisory", "label": "Big Four Advisory",  "tier": "mid" },
+        { "id": "consulting",    "label": "Consulting",         "tier": "high" },
+        { "id": "fin_analyst",   "label": "Financial Analyst",  "tier": "mid" },
+        { "id": "fintech",       "label": "FinTech",            "tier": "high" },
+        { "id": "other",         "label": "其他",               "tier": "broad" }
+      ]
+    }
+  },
+
+  "schoolDistributions": {
+    "pku_law": {
+      "regionalSalaryFactor": 0.85,
+      "employment": {
+        "red_circle": 0.12, "magic_circle": 0.02, "intl_firm": 0.05, "boutique_firm": 0.05,
+        "general_firm": 0.15, "judge": 0.08, "prosecutor": 0.08, "in_house": 0.15,
+        "civil_servant": 0.15, "academia": 0.05, "other": 0.10
+      },
+      "source": { "type": "官方畢業生就業報告", "name": "北京大學畢業生就業質量年度報告", "url": "https://scc.pku.edu.cn/", "year": 2023, "credibility": "medium" }
+    },
+    "ntu_law": {
+      "regionalSalaryFactor": 0.62,
+      "employment": {
+        "red_circle": 0.01, "magic_circle": 0.005, "intl_firm": 0.03, "boutique_firm": 0.06,
+        "general_firm": 0.22, "judge": 0.10, "prosecutor": 0.10, "in_house": 0.20,
+        "civil_servant": 0.15, "academia": 0.04, "other": 0.075
+      },
+      "source": { "type": "臺灣政府公開資料", "name": "教育部大專校院畢業生流向調查", "url": "https://www.edu.tw/", "year": 2023, "credibility": "medium" }
+    },
+    "cuhk_law": {
+      "regionalSalaryFactor": 1.15,
+      "employment": {
+        "red_circle": 0.03, "magic_circle": 0.10, "intl_firm": 0.20, "boutique_firm": 0.08,
+        "general_firm": 0.20, "judge": 0.02, "prosecutor": 0.02, "in_house": 0.18,
+        "civil_servant": 0.05, "academia": 0.03, "other": 0.09
+      },
+      "source": { "type": "香港政府", "name": "教資會 UGC 畢業生就業統計", "url": "https://www.ugc.edu.hk/", "year": 2023, "credibility": "medium" }
+    },
+    "hku_af": {
+      "regionalSalaryFactor": 1.0,
+      "employment": {
+        "ib": 0.10, "pe": 0.03, "hf": 0.02, "am": 0.08, "commercial": 0.15,
+        "corp_finance": 0.10, "big4_audit": 0.15, "big4_advisory": 0.10,
+        "consulting": 0.07, "fin_analyst": 0.10, "fintech": 0.05, "other": 0.05
+      },
+      "source": { "type": "Graduate Employment Survey", "name": "HKU CEDARS Graduate Employment Survey 2024", "url": "https://www.cedars.hku.hk/careers/graduate-employment-survey", "year": 2024, "credibility": "high" }
+    }
+  }
+}

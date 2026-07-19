@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "currency": "TWD",
+  "unit": "月薪（新臺幣）",
+  "notice": "所有薪資統一換算新臺幣（月薪）。數值為多來源交叉估算之參考區間中位數；金額欄位於各校再乘以 career.json 之 regionalSalaryFactor。非金額欄位為 1–10 或標籤之定性評估。",
+  "fields": [
+    { "key": "starting",    "label": "起薪",       "type": "money" },
+    { "key": "y3",          "label": "三年薪資",   "type": "money" },
+    { "key": "y5",          "label": "五年薪資",   "type": "money" },
+    { "key": "y10",         "label": "十年薪資",   "type": "money" },
+    { "key": "avgCareer",   "label": "平均職涯薪資","type": "money" },
+    { "key": "ceiling",     "label": "薪資天花板", "type": "money" },
+    { "key": "workHours",   "label": "工時（週）", "type": "number" },
+    { "key": "stress",      "label": "工作壓力",   "type": "scale10" },
+    { "key": "aiImpact",    "label": "AI 影響程度","type": "scale10" },
+    { "key": "futureDemand","label": "未來需求",   "type": "scale10" },
+    { "key": "promotion",   "label": "升遷速度",   "type": "scale10" },
+    { "key": "stability",   "label": "工作穩定性", "type": "scale10" },
+    { "key": "freedom",     "label": "工作自由度", "type": "scale10" },
+    { "key": "regionLimit", "label": "地區限制",   "type": "label" }
+  ],
+  "salaryTable": {
+    "law": {
+      "red_circle":    { "starting": 90000,  "y3": 140000, "y5": 200000, "y10": 350000, "avgCareer": 200000, "ceiling": 800000,  "workHours": 70, "stress": 9, "aiImpact": 4, "futureDemand": 7, "promotion": 7, "stability": 6, "freedom": 4, "regionLimit": "中國大陸為主" },
+      "magic_circle":  { "starting": 200000, "y3": 300000, "y5": 450000, "y10": 700000, "avgCareer": 420000, "ceiling": 1500000, "workHours": 75, "stress": 10,"aiImpact": 4, "futureDemand": 7, "promotion": 6, "stability": 6, "freedom": 3, "regionLimit": "國際／香港" },
+      "intl_firm":     { "starting": 150000, "y3": 220000, "y5": 320000, "y10": 500000, "avgCareer": 300000, "ceiling": 1000000, "workHours": 70, "stress": 9, "aiImpact": 4, "futureDemand": 7, "promotion": 6, "stability": 6, "freedom": 4, "regionLimit": "國際" },
+      "boutique_firm": { "starting": 90000,  "y3": 130000, "y5": 180000, "y10": 280000, "avgCareer": 170000, "ceiling": 500000,  "workHours": 60, "stress": 7, "aiImpact": 4, "futureDemand": 6, "promotion": 6, "stability": 6, "freedom": 6, "regionLimit": "在地" },
+      "general_firm":  { "starting": 55000,  "y3": 75000,  "y5": 100000, "y10": 150000, "avgCareer": 95000,  "ceiling": 300000,  "workHours": 55, "stress": 6, "aiImpact": 5, "futureDemand": 6, "promotion": 5, "stability": 6, "freedom": 6, "regionLimit": "在地" },
+      "judge":         { "starting": 80000,  "y3": 100000, "y5": 120000, "y10": 160000, "avgCareer": 120000, "ceiling": 250000,  "workHours": 45, "stress": 6, "aiImpact": 3, "futureDemand": 5, "promotion": 4, "stability": 10,"freedom": 5, "regionLimit": "本國司法體系" },
+      "prosecutor":    { "starting": 80000,  "y3": 100000, "y5": 120000, "y10": 160000, "avgCareer": 120000, "ceiling": 250000,  "workHours": 50, "stress": 7, "aiImpact": 3, "futureDemand": 5, "promotion": 4, "stability": 10,"freedom": 4, "regionLimit": "本國司法體系" },
+      "in_house":      { "starting": 65000,  "y3": 90000,  "y5": 120000, "y10": 180000, "avgCareer": 115000, "ceiling": 400000,  "workHours": 45, "stress": 5, "aiImpact": 5, "futureDemand": 7, "promotion": 5, "stability": 8, "freedom": 6, "regionLimit": "彈性" },
+      "civil_servant": { "starting": 55000,  "y3": 65000,  "y5": 78000,  "y10": 100000, "avgCareer": 78000,  "ceiling": 150000,  "workHours": 40, "stress": 4, "aiImpact": 3, "futureDemand": 5, "promotion": 4, "stability": 10,"freedom": 5, "regionLimit": "本國" },
+      "academia":      { "starting": 60000,  "y3": 80000,  "y5": 100000, "y10": 140000, "avgCareer": 100000, "ceiling": 250000,  "workHours": 50, "stress": 6, "aiImpact": 3, "futureDemand": 4, "promotion": 4, "stability": 8, "freedom": 8, "regionLimit": "國際流動" },
+      "other":         { "starting": 45000,  "y3": 60000,  "y5": 75000,  "y10": 100000, "avgCareer": 72000,  "ceiling": 200000,  "workHours": 45, "stress": 5, "aiImpact": 6, "futureDemand": 5, "promotion": 4, "stability": 6, "freedom": 6, "regionLimit": "彈性" }
+    },
+    "finance": {
+      "ib":            { "starting": 180000, "y3": 300000, "y5": 450000, "y10": 800000,  "avgCareer": 420000, "ceiling": 2000000, "workHours": 80, "stress": 10,"aiImpact": 4, "futureDemand": 7, "promotion": 8, "stability": 5, "freedom": 3, "regionLimit": "金融中心" },
+      "pe":            { "starting": 220000, "y3": 350000, "y5": 550000, "y10": 1000000, "avgCareer": 520000, "ceiling": 3000000, "workHours": 70, "stress": 9, "aiImpact": 3, "futureDemand": 7, "promotion": 7, "stability": 5, "freedom": 4, "regionLimit": "金融中心" },
+      "hf":            { "starting": 200000, "y3": 350000, "y5": 600000, "y10": 1200000, "avgCareer": 550000, "ceiling": 4000000, "workHours": 65, "stress": 10,"aiImpact": 5, "futureDemand": 6, "promotion": 7, "stability": 4, "freedom": 4, "regionLimit": "金融中心" },
+      "am":            { "starting": 130000, "y3": 200000, "y5": 300000, "y10": 500000,  "avgCareer": 300000, "ceiling": 1200000, "workHours": 55, "stress": 7, "aiImpact": 5, "futureDemand": 6, "promotion": 6, "stability": 7, "freedom": 5, "regionLimit": "金融中心" },
+      "commercial":    { "starting": 80000,  "y3": 110000, "y5": 150000, "y10": 230000,  "avgCareer": 150000, "ceiling": 500000,  "workHours": 50, "stress": 6, "aiImpact": 6, "futureDemand": 5, "promotion": 5, "stability": 8, "freedom": 5, "regionLimit": "彈性" },
+      "corp_finance":  { "starting": 90000,  "y3": 130000, "y5": 180000, "y10": 280000,  "avgCareer": 175000, "ceiling": 600000,  "workHours": 55, "stress": 6, "aiImpact": 5, "futureDemand": 6, "promotion": 5, "stability": 7, "freedom": 5, "regionLimit": "彈性" },
+      "big4_audit":    { "starting": 70000,  "y3": 100000, "y5": 140000, "y10": 230000,  "avgCareer": 140000, "ceiling": 600000,  "workHours": 60, "stress": 7, "aiImpact": 6, "futureDemand": 6, "promotion": 6, "stability": 8, "freedom": 4, "regionLimit": "國際流動" },
+      "big4_advisory": { "starting": 80000,  "y3": 120000, "y5": 170000, "y10": 280000,  "avgCareer": 170000, "ceiling": 700000,  "workHours": 60, "stress": 7, "aiImpact": 5, "futureDemand": 7, "promotion": 6, "stability": 7, "freedom": 5, "regionLimit": "國際流動" },
+      "consulting":    { "starting": 130000, "y3": 200000, "y5": 300000, "y10": 500000,  "avgCareer": 300000, "ceiling": 1200000, "workHours": 65, "stress": 8, "aiImpact": 5, "futureDemand": 7, "promotion": 7, "stability": 6, "freedom": 5, "regionLimit": "國際流動" },
+      "fin_analyst":   { "starting": 90000,  "y3": 130000, "y5": 180000, "y10": 280000,  "avgCareer": 170000, "ceiling": 600000,  "workHours": 50, "stress": 6, "aiImpact": 6, "futureDemand": 6, "promotion": 5, "stability": 7, "freedom": 5, "regionLimit": "彈性" },
+      "fintech":       { "starting": 100000, "y3": 150000, "y5": 220000, "y10": 350000,  "avgCareer": 210000, "ceiling": 900000,  "workHours": 55, "stress": 7, "aiImpact": 6, "futureDemand": 8, "promotion": 6, "stability": 6, "freedom": 6, "regionLimit": "彈性" },
+      "other":         { "starting": 60000,  "y3": 85000,  "y5": 110000, "y10": 160000,  "avgCareer": 105000, "ceiling": 350000,  "workHours": 45, "stress": 5, "aiImpact": 6, "futureDemand": 5, "promotion": 4, "stability": 6, "freedom": 6, "regionLimit": "彈性" }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "schools": [
+    {
+      "id": "pku_law",
+      "name": "北京大學 法律",
+      "shortName": "北大法律",
+      "program": "法律",
+      "field": "law",
+      "cityId": "beijing",
+      "careerSetId": "law",
+      "fitConfigId": "pku_law",
+      "brand": {
+        "schoolBrand": "中國頂尖綜合大學，中國大陸法學龍頭之一",
+        "programBrand": "北大法學院為中國法學教育與研究重鎮"
+      },
+      "narrative": {
+        "positioning": "面向中國大陸體制內外法律市場，紅圈律所、公職、學術資源極強。",
+        "strengths": ["學術資源", "教授資源", "校友資源", "品牌", "就業優勢"],
+        "weaknesses": ["競爭壓力", "課業壓力", "語言要求"],
+        "developmentLimits": ["法律資格地域限制", "回台發展限制", "跨國執業限制"],
+        "effort": {
+          "recommendedPR": "PR99–90",
+          "language": "普通話母語級、法律英語能力佳",
+          "competition": "模擬法庭、學術競賽",
+          "research": "跟隨教授參與課題",
+          "internship": "紅圈律所、法院、檢察院實習",
+          "certificate": "中國法律職業資格考試（法考）",
+          "network": "校友與體制內人脈",
+          "exchange": "海外交換以拓展國際視野",
+          "doubleMajor": "可搭配經濟／政治雙修"
+        }
+      },
+      "sources": [
+        { "type": "學校官方就業中心", "name": "北京大學學生就業指導服務中心", "url": "https://scc.pku.edu.cn/", "year": 2024, "credibility": "high" },
+        { "type": "官方畢業生就業報告", "name": "北京大學畢業生就業質量年度報告", "url": "https://scc.pku.edu.cn/", "year": 2023, "credibility": "high" }
+      ]
+    },
+    {
+      "id": "ntu_law",
+      "name": "臺灣大學 法律",
+      "shortName": "台大法律",
+      "program": "法律",
+      "field": "law",
+      "cityId": "taipei",
+      "careerSetId": "law",
+      "fitConfigId": "ntu_law",
+      "brand": {
+        "schoolBrand": "臺灣第一學府，社會信任度最高",
+        "programBrand": "台大法律為臺灣法界主流養成搖籃"
+      },
+      "narrative": {
+        "positioning": "臺灣法界（司法官、律師、法務、公職）主流路徑，本地認可度最高。",
+        "strengths": ["品牌", "校友資源", "就業優勢", "城市優勢"],
+        "weaknesses": ["競爭壓力", "課業壓力"],
+        "developmentLimits": ["法律資格地域限制", "跨國執業限制", "產業限制"],
+        "effort": {
+          "recommendedPR": "PR89–75",
+          "language": "中文母語、法律英語加分",
+          "competition": "校內外模擬法庭",
+          "research": "研究助理、學術論文",
+          "internship": "律所、法院、企業法務實習",
+          "certificate": "律師高考、司法官特考",
+          "network": "台大法律校友網絡",
+          "exchange": "交換以補國際化",
+          "doubleMajor": "可搭配財經法、智財法"
+        }
+      },
+      "sources": [
+        { "type": "臺灣政府公開資料", "name": "教育部大專校院畢業生流向調查", "url": "https://www.edu.tw/", "year": 2023, "credibility": "high" },
+        { "type": "學校官方就業中心", "name": "臺灣大學學生職業生涯發展中心", "url": "https://career.ntu.edu.tw/", "year": 2024, "credibility": "high" }
+      ]
+    },
+    {
+      "id": "cuhk_law",
+      "name": "香港中文大學 法律",
+      "shortName": "中大法律",
+      "program": "法律",
+      "field": "law",
+      "cityId": "hongkong",
+      "careerSetId": "law",
+      "fitConfigId": "cuhk_law",
+      "brand": {
+        "schoolBrand": "香港頂尖綜合大學，國際化程度高",
+        "programBrand": "中大法律學院為普通法系新興名校"
+      },
+      "narrative": {
+        "positioning": "普通法系國際化路徑，國際律所與跨境法律市場機會多。",
+        "strengths": ["國際化", "交換資源", "品牌", "薪資優勢", "城市優勢"],
+        "weaknesses": ["競爭壓力", "生活成本", "語言要求"],
+        "developmentLimits": ["法律資格地域限制", "回台發展限制", "跨國執業限制"],
+        "effort": {
+          "recommendedPR": "PR99–90",
+          "language": "英語（法律英語）為核心、粵語加分",
+          "competition": "國際模擬法庭（Vis Moot 等）",
+          "research": "比較法、跨境法研究",
+          "internship": "國際律所、Magic Circle 香港辦公室實習",
+          "certificate": "PCLL、香港律師資格",
+          "network": "國際律所與校友",
+          "exchange": "英美法系交換",
+          "doubleMajor": "可搭配商法、金融法"
+        }
+      },
+      "sources": [
+        { "type": "香港政府", "name": "教資會 UGC 畢業生就業統計", "url": "https://www.ugc.edu.hk/", "year": 2023, "credibility": "high" },
+        { "type": "學校官方就業中心", "name": "CUHK Career Planning and Development Centre", "url": "https://cpdc.osa.cuhk.edu.hk/", "year": 2024, "credibility": "high" }
+      ]
+    },
+    {
+      "id": "hku_af",
+      "name": "香港大學 會計與金融",
+      "shortName": "港大會金",
+      "program": "會計與金融",
+      "field": "finance",
+      "cityId": "hongkong",
+      "careerSetId": "finance",
+      "fitConfigId": "hku_af",
+      "brand": {
+        "schoolBrand": "香港排名最高之綜合大學，國際聲譽卓著",
+        "programBrand": "港大會計與金融為亞洲頂尖商科學程"
+      },
+      "narrative": {
+        "positioning": "面向投行、PE/HF、四大與金融業，亞洲金融中心就業優勢明顯。",
+        "strengths": ["國際化", "就業優勢", "薪資優勢", "品牌", "校友資源", "城市優勢"],
+        "weaknesses": ["競爭壓力", "工時", "生活成本", "語言要求"],
+        "developmentLimits": ["金融監管限制", "回台發展限制", "產業限制"],
+        "effort": {
+          "recommendedPR": "PR99–90",
+          "language": "英語流利、普通話與粵語加分",
+          "competition": "投資／估值競賽、CFA Research Challenge",
+          "research": "財務建模、產業研究",
+          "internship": "投行 Summer Analyst、四大實習（極關鍵）",
+          "certificate": "CFA、CPA、FRM",
+          "network": "投行與買方校友網絡",
+          "exchange": "歐美商學院交換",
+          "doubleMajor": "可搭配資料科學、經濟"
+        }
+      },
+      "sources": [
+        { "type": "Graduate Employment Survey", "name": "HKU CEDARS Graduate Employment Survey 2024", "url": "https://www.cedars.hku.hk/careers/graduate-employment-survey", "year": 2024, "credibility": "high" },
+        { "type": "官方畢業生就業報告", "name": "HKU 2024 Bachelor’s Degree Graduates Salary Benchmark", "url": "https://www.hku.hk/press/press-releases/detail/28533.html", "year": 2024, "credibility": "high" }
+      ]
+    }
+  ]
+}
