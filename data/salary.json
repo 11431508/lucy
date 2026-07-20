@@ -4,6 +4,12 @@
   "currency": "TWD",
   "unit": "月薪（新臺幣）",
   "notice": "所有薪資統一換算新臺幣（月薪）。數值為多來源交叉估算之參考區間中位數；金額欄位於各校再乘以 career.json 之 regionalSalaryFactor。若 schoolOverrides 對某校某職涯提供絕對值，則該金額欄位直接採用覆寫值（不再乘係數），用於公部門等不適用市場係數之薪資。非金額欄位為 1–10 或標籤之定性評估。",
+  "references": [
+    { "name": "紅圈所薪酬盤點（方達起薪 RMB 25k、2024 起普遍降薪 10–30%）", "url": "https://zhuanlan.zhihu.com/p/684273862", "year": 2024, "credibility": "medium" },
+    { "name": "香港 IB Analyst 底薪 HK$850–950k/年（Glassdoor/levels.fyi 區間）", "url": "https://www.glassdoor.com.hk/Salaries/investment-banking-analyst-salary-SRCH_KO0,26.htm", "year": 2024, "credibility": "medium" },
+    { "name": "HKU CEDARS Graduate Employment Survey（全校月薪中位數 HK$27,600）", "url": "https://www.cedars.hku.hk/careers/graduate-employment-survey", "year": 2024, "credibility": "high" },
+    { "name": "司法院法官俸給（候補法官含專業加給約 13 萬/月）", "url": "https://www.judicial.gov.tw/", "year": 2024, "credibility": "high" }
+  ],
   "fields": [
     { "key": "starting",    "label": "起薪",       "type": "money" },
     { "key": "y3",          "label": "三年薪資",   "type": "money" },
@@ -34,7 +40,7 @@
   },
   "salaryTable": {
     "law": {
-      "red_circle":    { "starting": 90000,  "y3": 140000, "y5": 200000, "y10": 350000, "avgCareer": 200000, "ceiling": 800000,  "workHours": 70, "stress": 9, "aiImpact": 4, "futureDemand": 7, "promotion": 7, "stability": 6, "freedom": 4, "regionLimit": "中國大陸為主" },
+      "red_circle":    { "starting": 105000, "y3": 160000, "y5": 200000, "y10": 350000, "avgCareer": 200000, "ceiling": 800000,  "workHours": 70, "stress": 9, "aiImpact": 4, "futureDemand": 7, "promotion": 7, "stability": 6, "freedom": 4, "regionLimit": "中國大陸為主" },
       "magic_circle":  { "starting": 200000, "y3": 300000, "y5": 450000, "y10": 700000, "avgCareer": 420000, "ceiling": 1500000, "workHours": 75, "stress": 10,"aiImpact": 4, "futureDemand": 7, "promotion": 6, "stability": 6, "freedom": 3, "regionLimit": "國際／香港" },
       "intl_firm":     { "starting": 150000, "y3": 220000, "y5": 320000, "y10": 500000, "avgCareer": 300000, "ceiling": 1000000, "workHours": 70, "stress": 9, "aiImpact": 4, "futureDemand": 7, "promotion": 6, "stability": 6, "freedom": 4, "regionLimit": "國際" },
       "boutique_firm": { "starting": 90000,  "y3": 130000, "y5": 180000, "y10": 280000, "avgCareer": 170000, "ceiling": 500000,  "workHours": 60, "stress": 7, "aiImpact": 4, "futureDemand": 6, "promotion": 6, "stability": 6, "freedom": 6, "regionLimit": "在地" },
@@ -47,7 +53,7 @@
       "other":         { "starting": 45000,  "y3": 60000,  "y5": 75000,  "y10": 100000, "avgCareer": 72000,  "ceiling": 200000,  "workHours": 45, "stress": 5, "aiImpact": 6, "futureDemand": 5, "promotion": 4, "stability": 6, "freedom": 6, "regionLimit": "彈性" }
     },
     "finance": {
-      "ib":            { "starting": 180000, "y3": 300000, "y5": 450000, "y10": 800000,  "avgCareer": 420000, "ceiling": 2000000, "workHours": 80, "stress": 10,"aiImpact": 4, "futureDemand": 7, "promotion": 8, "stability": 5, "freedom": 3, "regionLimit": "金融中心" },
+      "ib":            { "starting": 280000, "y3": 400000, "y5": 600000, "y10": 1000000, "avgCareer": 500000, "ceiling": 2500000, "workHours": 80, "stress": 10,"aiImpact": 4, "futureDemand": 7, "promotion": 8, "stability": 5, "freedom": 3, "regionLimit": "金融中心" },
       "pe":            { "starting": 220000, "y3": 350000, "y5": 550000, "y10": 1000000, "avgCareer": 520000, "ceiling": 3000000, "workHours": 70, "stress": 9, "aiImpact": 3, "futureDemand": 7, "promotion": 7, "stability": 5, "freedom": 4, "regionLimit": "金融中心" },
       "hf":            { "starting": 200000, "y3": 350000, "y5": 600000, "y10": 1200000, "avgCareer": 550000, "ceiling": 4000000, "workHours": 65, "stress": 10,"aiImpact": 5, "futureDemand": 6, "promotion": 7, "stability": 4, "freedom": 4, "regionLimit": "金融中心" },
       "am":            { "starting": 130000, "y3": 200000, "y5": 300000, "y10": 500000,  "avgCareer": 300000, "ceiling": 1200000, "workHours": 55, "stress": 7, "aiImpact": 5, "futureDemand": 6, "promotion": 6, "stability": 7, "freedom": 5, "regionLimit": "金融中心" },

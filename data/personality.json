@@ -23,8 +23,8 @@
         { "key": "ethicsTolerance","weight": 1 },
         { "key": "logic",          "weight": 1 }
       ],
-      "fixedAdjustment": -2,
-      "note": "採高容忍文字、抗壓性、利益性社交、道德承受度、邏輯分析五項，固定減 2 分。"
+      "fixedAdjustment": 0,
+      "note": "採高容忍文字、抗壓性、利益性社交、道德承受度、邏輯分析五項，無固定加減分。"
     },
     "ntu_law": {
       "label": "臺灣大學 法律",
@@ -34,8 +34,8 @@
         { "key": "ethicsTolerance","weight": 1 },
         { "key": "logic",          "weight": 1 }
       ],
-      "fixedAdjustment": 4,
-      "note": "採高容忍文字、抗壓性、道德承受度、邏輯分析四項，固定加 4 分。"
+      "fixedAdjustment": 2,
+      "note": "採高容忍文字、抗壓性、道德承受度、邏輯分析四項，固定加 2 分。"
     },
     "cuhk_law": {
       "label": "香港中文大學 法律",
