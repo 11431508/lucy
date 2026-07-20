@@ -3,7 +3,7 @@
   "updatedAt": "2026-07-18",
   "currency": "TWD",
   "unit": "月薪（新臺幣）",
-  "notice": "所有薪資統一換算新臺幣（月薪）。數值為多來源交叉估算之參考區間中位數；金額欄位於各校再乘以 career.json 之 regionalSalaryFactor。非金額欄位為 1–10 或標籤之定性評估。",
+  "notice": "所有薪資統一換算新臺幣（月薪）。數值為多來源交叉估算之參考區間中位數；金額欄位於各校再乘以 career.json 之 regionalSalaryFactor。若 schoolOverrides 對某校某職涯提供絕對值，則該金額欄位直接採用覆寫值（不再乘係數），用於公部門等不適用市場係數之薪資。非金額欄位為 1–10 或標籤之定性評估。",
   "fields": [
     { "key": "starting",    "label": "起薪",       "type": "money" },
     { "key": "y3",          "label": "三年薪資",   "type": "money" },
@@ -20,6 +20,18 @@
     { "key": "freedom",     "label": "工作自由度", "type": "scale10" },
     { "key": "regionLimit", "label": "地區限制",   "type": "label" }
   ],
+  "schoolOverrides": {
+    "ntu_law": {
+      "comment": "台灣公部門與法界薪資不適用市場地區係數，以下為新臺幣月薪絕對值。法官／檢察官依候補法官（含專業加給）約 12–14 萬起；律師依受僱律師市場行情；公務員依高考三級法制職系。來源：司法院俸給資訊、考選部、勞動部職類別薪資調查、104 薪資情報（估算，credibility: medium）。",
+      "judge":         { "starting": 130000, "y3": 140000, "y5": 150000, "y10": 170000, "avgCareer": 150000, "ceiling": 230000 },
+      "prosecutor":    { "starting": 130000, "y3": 140000, "y5": 150000, "y10": 170000, "avgCareer": 150000, "ceiling": 230000 },
+      "general_firm":  { "starting": 65000,  "y3": 85000,  "y5": 110000, "y10": 160000, "avgCareer": 110000, "ceiling": 500000 },
+      "boutique_firm": { "starting": 85000,  "y3": 110000, "y5": 150000, "y10": 250000, "avgCareer": 160000, "ceiling": 800000 },
+      "in_house":      { "starting": 55000,  "y3": 75000,  "y5": 95000,  "y10": 140000, "avgCareer": 95000,  "ceiling": 300000 },
+      "civil_servant": { "starting": 48000,  "y3": 55000,  "y5": 62000,  "y10": 75000,  "avgCareer": 62000,  "ceiling": 120000 },
+      "academia":      { "starting": 90000,  "y3": 100000, "y5": 110000, "y10": 130000, "avgCareer": 110000, "ceiling": 180000 }
+    }
+  },
   "salaryTable": {
     "law": {
       "red_circle":    { "starting": 90000,  "y3": 140000, "y5": 200000, "y10": 350000, "avgCareer": 200000, "ceiling": 800000,  "workHours": 70, "stress": 9, "aiImpact": 4, "futureDemand": 7, "promotion": 7, "stability": 6, "freedom": 4, "regionLimit": "中國大陸為主" },

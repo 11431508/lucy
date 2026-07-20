@@ -226,7 +226,7 @@ function renderStep3() {
     .join('');
 
   const body = `
-    <p class="lead">你認為自己的努力程度在人群中的 PR？PR 不直接增加薪資，而是改變各職涯的分布機率。</p>
+    <p class="lead">${db.formula.salary.prQuestion} PR 不直接增加薪資，而是改變該校各職涯的分布機率。</p>
     <div class="pr-options">${bands}</div>
     <p class="detail-note">薪資公式：（起薪×0.2 + 職涯平均薪資×0.8）→ 換算台幣 → 每一萬元 = 1 分 → 除以生活成本指數，四校最高標準化為 10 分。</p>`;
   return StepCard({ step: 3, title: '薪資分析', subtitle: '以努力程度 PR 調整職涯分布', body });

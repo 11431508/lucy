@@ -50,12 +50,14 @@
   "schoolDistributions": {
     "pku_law": {
       "regionalSalaryFactor": 0.85,
+      "audience": "台灣（非中國大陸籍）學生",
+      "audienceNote": "分布已依非陸籍身分修正：大陸法官、檢察官、公務員均要求中國大陸籍與編制身分，台生原則上無法擔任，故設為 0 或趨近 0；比例轉往律所、企業法務與其他（含回台就業）。台灣居民可報考大陸法律職業資格考試（法考），故律所路徑保留。",
       "employment": {
-        "red_circle": 0.12, "magic_circle": 0.02, "intl_firm": 0.05, "boutique_firm": 0.05,
-        "general_firm": 0.15, "judge": 0.08, "prosecutor": 0.08, "in_house": 0.15,
-        "civil_servant": 0.15, "academia": 0.05, "other": 0.10
+        "red_circle": 0.12, "magic_circle": 0.02, "intl_firm": 0.06, "boutique_firm": 0.06,
+        "general_firm": 0.18, "judge": 0.0, "prosecutor": 0.0, "in_house": 0.28,
+        "civil_servant": 0.01, "academia": 0.05, "other": 0.22
       },
-      "source": { "type": "官方畢業生就業報告", "name": "北京大學畢業生就業質量年度報告", "url": "https://scc.pku.edu.cn/", "year": 2023, "credibility": "medium" }
+      "source": { "type": "官方畢業生就業報告＋制度限制修正", "name": "北京大學畢業生就業質量年度報告；大陸法官法／檢察官法／公務員法之國籍與編制要求", "url": "https://scc.pku.edu.cn/", "year": 2023, "credibility": "medium" }
     },
     "ntu_law": {
       "regionalSalaryFactor": 0.62,
@@ -68,12 +70,14 @@
     },
     "cuhk_law": {
       "regionalSalaryFactor": 1.15,
+      "audience": "台灣（非香港永久居民）學生",
+      "audienceNote": "香港司法職位與多數公務員職位要求香港永久性居民身分（居港滿 7 年方可申請），故法官／檢察官／公務員比例已下修；私人執業（律所、企業法務）可經 IANG 等簽證途徑，不受此限。",
       "employment": {
         "red_circle": 0.03, "magic_circle": 0.10, "intl_firm": 0.20, "boutique_firm": 0.08,
-        "general_firm": 0.20, "judge": 0.02, "prosecutor": 0.02, "in_house": 0.18,
-        "civil_servant": 0.05, "academia": 0.03, "other": 0.09
+        "general_firm": 0.22, "judge": 0.005, "prosecutor": 0.005, "in_house": 0.21,
+        "civil_servant": 0.01, "academia": 0.03, "other": 0.11
       },
-      "source": { "type": "香港政府", "name": "教資會 UGC 畢業生就業統計", "url": "https://www.ugc.edu.hk/", "year": 2023, "credibility": "medium" }
+      "source": { "type": "香港政府＋制度限制修正", "name": "教資會 UGC 畢業生就業統計；香港公務員入職之永久居民要求", "url": "https://www.ugc.edu.hk/", "year": 2023, "credibility": "medium" }
     },
     "hku_af": {
       "regionalSalaryFactor": 1.0,

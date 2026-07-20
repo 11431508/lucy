@@ -58,12 +58,22 @@ export function computeAllSalary({ formula, school, career, salary, costIndex, p
     const dist = career.schoolDistributions[s.id];
     const factor = dist.regionalSalaryFactor;
     const table = salary.salaryTable[setId];
+    const overrides = salary.schoolOverrides?.[s.id] || null;
     const adjusted = prAdjustedDistribution(career, setId, dist.employment, prBand);
 
     let expectedBlended = 0;
     const careers = career.careerSets[setId].careers.map((c) => {
       const row = table[c.id];
-      const blended = blendedSalary(formula, row) * factor;
+      const ov = overrides?.[c.id] || null;
+      /**
+       * 取金額欄位：若該校對此職涯有絕對值覆寫則直接採用（不乘地區係數），
+       * 否則以基準表金額乘 regionalSalaryFactor。
+       * @param {string} key 金額欄位鍵
+       * @returns {number} 新臺幣月薪
+       */
+      const money = (key) => (ov && ov[key] != null ? ov[key] : row[key] * factor);
+
+      const blended = money('starting') * formula.salary.graduateWeight + money('avgCareer') * formula.salary.careerAverageWeight;
       const baseRatio = dist.employment[c.id] || 0;
       const prRatio = adjusted[c.id] || 0;
       expectedBlended += prRatio * blended;
@@ -74,13 +84,14 @@ export function computeAllSalary({ formula, school, career, salary, costIndex, p
         baseRatio,
         prRatio,
         blendedSalary: blended,
+        overridden: !!ov,
         salary: {
-          starting: row.starting * factor,
-          y3: row.y3 * factor,
-          y5: row.y5 * factor,
-          y10: row.y10 * factor,
-          avgCareer: row.avgCareer * factor,
-          ceiling: row.ceiling * factor,
+          starting: money('starting'),
+          y3: money('y3'),
+          y5: money('y5'),
+          y10: money('y10'),
+          avgCareer: money('avgCareer'),
+          ceiling: money('ceiling'),
           workHours: row.workHours,
           stress: row.stress,
           aiImpact: row.aiImpact,
