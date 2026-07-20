@@ -27,6 +27,6 @@ export function Header(currentStep, stepLabels) {
           <p class="brand-sub">University &amp; Major Decision Analysis</p>
         </div>
       </div>
-      <nav class="stepper">${dots}</nav>
+      <nav class="stepper">${dots}<a class="btn btn-mini nav-abroad" href="abroad.html">升學評分 →</a></nav>
     </header>`;
 }

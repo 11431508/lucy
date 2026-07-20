@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-20",
+  "audience": "台灣地區身分申請人（高中畢業起算）",
+  "fx": { "USD_TWD": 32, "GBP_TWD": 40, "note": "匯率為 2026 年中概略值，僅供換算展示。" },
+
+  "conceptNote": "重要觀念：美國法學院『沒有 LLB』。美國本地人讀的也是 JD（Juris Doctor，3 年制研究所學位，須先完成 4 年大學）；LLB 為英國與大英國協之 3 年制大學部法律學位（高中畢業直入）；美國提供外國法律人之短期學位為 LLM（1 年）。因此正確比較為：美國路徑＝大學 4 年＋JD 3 年；英國路徑＝LLB 3 年＋SQE 資格程序；混合路徑＝台灣法律學士＋美國 LLM＋紐約州律師考試。",
+
+  "usTop10Note": "美國前 10 法學院（T14 前段）：Yale、Stanford、Harvard、Chicago、Columbia、NYU、Penn、UVA、Duke、Michigan／Northwestern（依 US News 近年區間）。",
+
+  "policySnapshot": {
+    "asOf": "2026-07",
+    "us": [
+      "H-1B 10 萬美元費：2026/6 聯邦法院判定違法後遭行政暫緩、現又生效，第一巡迴上訴法院訴訟中，政策反覆性高。",
+      "F-1 學生於美國境內轉換 H-1B（change of status）豁免 10 萬美元費，僱主成本約 8–11k 美元。",
+      "H-1B 改採薪資加權抽籤，高薪職位（如 BigLaw first-year 約 $225k）中籤機率相對提高。",
+      "法律類 OPT 僅 12 個月（無 STEM 延長）；簽證審查與面談排程波動大。",
+      "台灣護照持有人非當前政策重點限制對象（相較中國大陸籍 STEM 領域）。"
+    ],
+    "uk": [
+      "2025 移民白皮書落地：2027/1/1 起 Graduate visa 由 2 年縮短為 18 個月（博士維持 3 年）。",
+      "18 個月與 9 月開始之 training contract 時程錯位，實務上壓縮求職窗口。",
+      "SQE 取代舊 LPC：LLB 畢業＋SQE1/SQE2＋2 年合格工作經驗（QWE）取得 England & Wales 事務律師資格。",
+      "永居（ILR）年限有延長至 10 年之改革方向，長期移民路徑收緊。"
+    ]
+  },
+
+  "dimensions": [
+    { "key": "qualification", "label": "執業資格取得", "weight": 15, "comment": "能否取得完整、可執業之法律資格及其涵蓋範圍" },
+    { "key": "time",          "label": "時間成本",     "weight": 10, "comment": "自高中畢業至可執業之總年數（越短分越高）" },
+    { "key": "cost",          "label": "金錢成本",     "weight": 15, "comment": "學費＋生活費總額（越低分越高）" },
+    { "key": "stayWork",      "label": "留在當地工作可行性", "weight": 15, "comment": "畢業後於當地就業之簽證與市場可行性" },
+    { "key": "policyRisk",    "label": "政策／政治風險", "weight": 10, "comment": "移民與教育政策之波動暴露（越穩定分越高）" },
+    { "key": "salary",        "label": "薪資潛力",     "weight": 15, "comment": "取得資格後之薪資水準與天花板" },
+    { "key": "returnValue",   "label": "回台／回亞洲價值", "weight": 10, "comment": "資格與學歷於台灣及亞洲市場之認可度" },
+    { "key": "admission",     "label": "申請可及性",   "weight": 10, "comment": "以台灣優秀申請人條件之錄取可行性（越易分越高）" }
+  ],
+
+  "paths": [
+    {
+      "id": "us_jd",
+      "name": "美國路徑：美國大學（4 年）＋前 10 法學院 JD（3 年）",
+      "shortName": "美國 JD",
+      "totalYears": 7,
+      "estCostTWD": 20000000,
+      "costBreakdown": "私立大學 4 年約 US$360k＋T10 JD 3 年約 US$330k（學費＋生活）≈ US$690k ≈ NT$2,200 萬；獎學金可下修",
+      "scores": {
+        "qualification": 9, "time": 3, "cost": 2, "stayWork": 6,
+        "policyRisk": 4, "salary": 10, "returnValue": 8, "admission": 2
+      },
+      "rationale": {
+        "qualification": "JD＋紐約／加州律師考試＝美國本土完整執業資格，全球認可度最高之普通法資格之一。",
+        "time": "4＋3 共 7 年，為三路徑最長。",
+        "cost": "總成本約 NT$2,000–2,200 萬，為三路徑最高（獎學金可部分下修）。",
+        "stayWork": "OPT 12 個月（法律無 STEM 延長）→ H-1B；F-1 境內轉換豁免 10 萬美元費、薪資加權抽籤有利 BigLaw 高薪；BigLaw 有 sponsor 慣例，但抽籤不確定性仍在。",
+        "policyRisk": "10 萬美元費訴訟反覆、簽證審查趨嚴、政策波動為三路徑最大；台灣身分非重點限制對象屬相對緩衝。",
+        "salary": "BigLaw first-year 約 US$225k＋獎金 ≈ NT$60 萬/月，遠高於英台起薪。",
+        "returnValue": "T10 JD＋NY bar 回亞洲（台北涉外所、香港、新加坡）為頂級門票。",
+        "admission": "T10 JD 對國際申請人極度競爭：LSAT 17x＋頂尖 GPA＋文書，可及性為三路徑最低。"
+      }
+    },
+    {
+      "id": "uk_llb",
+      "name": "英國路徑：頂尖 LLB（3 年）＋SQE／QWE（約 2 年）",
+      "shortName": "英國 LLB",
+      "totalYears": 5,
+      "estCostTWD": 7000000,
+      "costBreakdown": "Oxbridge/LSE/UCL/KCL 國際生學費約 £28–40k/年 ×3＋倫敦生活費 ≈ £160–180k ≈ NT$650–720 萬",
+      "scores": {
+        "qualification": 8, "time": 7, "cost": 6, "stayWork": 5,
+        "policyRisk": 6, "salary": 7, "returnValue": 8, "admission": 5
+      },
+      "rationale": {
+        "qualification": "LLB→SQE1/SQE2＋2 年 QWE＝England & Wales 事務律師，國際通用之普通法資格。",
+        "time": "3 年 LLB＋約 2 年資格程序，高中畢業直入、總時程明顯短於美國。",
+        "cost": "總成本約 NT$650–720 萬，約為美國路徑三分之一。",
+        "stayWork": "2027 起 Graduate visa 縮為 18 個月且與 training contract 時程錯位；MC／US firms in London 有 sponsor 慣例但 TC 錄取競爭激烈。",
+        "policyRisk": "規則明確、司法穩定，但白皮書方向為全面收緊（Graduate 18 個月、ILR 擬延至 10 年）。",
+        "salary": "Magic Circle NQ 約 £150k、美系所倫敦辦公室約 £170k+ ≈ NT$50–57 萬/月。",
+        "returnValue": "英國資格與香港普通法直接銜接，回台／香港／新加坡認可度高。",
+        "admission": "A-level/IB 高標＋LNAT（部分校），競爭激烈但可及性顯著高於 T10 JD。"
+      }
+    },
+    {
+      "id": "tw_llm",
+      "name": "混合路徑：台灣法律學士（4 年）＋美國 T10 LLM（1 年）＋NY Bar",
+      "shortName": "台灣＋美國LLM",
+      "totalYears": 5,
+      "estCostTWD": 4000000,
+      "costBreakdown": "台灣學士學雜費低＋T10 LLM 一年（學費＋生活）約 US$110–120k ≈ NT$350–380 萬",
+      "scores": {
+        "qualification": 7, "time": 9, "cost": 8, "stayWork": 3,
+        "policyRisk": 6, "salary": 6, "returnValue": 9, "admission": 7
+      },
+      "rationale": {
+        "qualification": "LLM 後可考紐約州律師（需滿足 NY BOLE 學分要件），取得涉外執業資格；惟 LLM 非 JD，美國本土就業市場地位次於 JD。",
+        "time": "4＋1 共 5 年即具台灣學士＋美國 LLM＋NY bar 應試資格，時間效率最高。",
+        "cost": "美國暴露僅 1 年，總成本約 NT$400 萬，為三路徑最低。",
+        "stayWork": "LLM 留美就業困難：OPT 12 個月內求職、律所招聘以 JD 為主，多數 LLM 畢業後返亞洲。",
+        "policyRisk": "暴露美國政策風險僅 1 年，且不依賴 H-1B 抽籤即可完成資格目標。",
+        "salary": "回台涉外所（理律、萬國等）＋NY bar 有明確薪資溢價；惟低於留美 BigLaw 與倫敦 NQ。",
+        "returnValue": "台大法律＋美國名校 LLM＋NY bar 為台灣涉外法律圈行之有年之主流菁英路徑，銜接本平台前段之台大選項。",
+        "admission": "T10 LLM 對台灣頂尖法律系優秀畢業生可及性高（GPA＋托福＋實務經歷）。"
+      }
+    }
+  ],
+
+  "verdict": {
+    "title": "是否有必要留美？（客觀結論）",
+    "points": [
+      "目標＝在美國本土執業（BigLaw／美國法院體系）：JD 為唯一完整路徑，LLB 不存在於美國、LLM 不足以支撐美國本土長期執業。此目標下留美必要，且需承擔最高成本（約 NT$2,000 萬）、最長時間（7 年）與最高政策波動。",
+      "目標＝取得國際（普通法）執業資格並於亞洲發展：無必要全程留美。英國 LLB（5 年、約 NT$700 萬）或台灣學士＋美國 LLM＋NY bar（5 年、約 NT$400 萬）均可達成，後者與本平台前段之台大法律選項直接銜接。",
+      "政策面（2026/7）：美國移民政策波動為三地最高（H-1B 費訴訟反覆、審查趨嚴），但 F-1 境內轉換豁免 10 萬美元費＋薪資加權對 BigLaw 有利，實際衝擊集中於非高薪職位；英國方向為明確但漸進之收緊（Graduate 18 個月）；台灣身分於兩地皆非重點限制對象。",
+      "分數解讀：總分反映各維度加權之綜合，非「優劣裁定」；權重（資格15／時間10／成本15／簽證15／政策10／薪資15／回台10／申請10）可於 abroad.json 自行調整重算。"
+    ]
+  },
+
+  "sources": [
+    { "name": "USCIS 澄清 10 萬美元 H-1B 費適用範圍（F-1 境內轉換豁免）｜BakerHostetler", "url": "https://www.bakerlaw.com/insights/uscis-clarifies-when-100000-h-1b-fee-is-required-exempting-most-f-1-students/", "year": 2026, "official": false, "credibility": "high" },
+    { "name": "10 萬美元 H-1B 費法院暫緩後恢復生效（2026/6）", "url": "https://www.ellis.com/resources/h1b-100k-fee-reinstated-june-2026", "year": 2026, "official": false, "credibility": "medium" },
+    { "name": "英國 2025 移民白皮書後之簽證與定居規則變更｜House of Commons Library", "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10267/", "year": 2026, "official": true, "credibility": "high" },
+    { "name": "Graduate Route 縮短為 18 個月（2027/1/1 起申請）｜DavidsonMorris", "url": "https://www.davidsonmorris.com/graduate-route-reduced-to-18-months/", "year": 2026, "official": false, "credibility": "high" },
+    { "name": "SRA：SQE 資格制度（SQE1/SQE2＋QWE）", "url": "https://www.sra.org.uk/become-solicitor/sqe/", "year": 2026, "official": true, "credibility": "high" },
+    { "name": "NY BOLE：外國法學位應考資格規則（LLM cure）", "url": "https://www.nybarexam.org/Foreign/ForeignLegalEducation.htm", "year": 2026, "official": true, "credibility": "high" },
+    { "name": "BigLaw 起薪（Cravath scale，first-year US$225k）", "url": "https://www.biglawinvestor.com/biglaw-salary-scale/", "year": 2025, "official": false, "credibility": "medium" },
+    { "name": "US News Best Law Schools（T14 名單）", "url": "https://www.usnews.com/best-graduate-schools/top-law-schools/law-rankings", "year": 2025, "official": false, "credibility": "medium" }
+  ]
+}
