@@ -133,6 +133,7 @@ export function ResultCard(r, rankIndex) {
         <div class="result-block wide">
           <h4>資料來源</h4>
           <p class="sources">${t.sources}</p>
+          ${t.salarySources ? `<h4>薪資逐筆引用</h4><p class="sources">${t.salarySources}</p>` : ''}
         </div>
       </div>
     </article>`;

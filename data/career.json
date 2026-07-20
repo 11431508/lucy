@@ -71,13 +71,13 @@
     "cuhk_law": {
       "regionalSalaryFactor": 1.15,
       "audience": "台灣（非香港永久居民）學生",
-      "audienceNote": "香港司法職位與多數公務員職位要求香港永久性居民身分（居港滿 7 年方可申請），故法官／檢察官／公務員比例已下修；私人執業（律所、企業法務）可經 IANG 等簽證途徑，不受此限。",
+      "audienceNote": "依《香港基本法》第 99 條，公務人員必須為香港永久性居民，司法職位同受此限。台生剛畢業時未居港滿 7 年、非永久性居民，故『初次就業』分布之法官／檢察官／公務員設為 0；惟居港滿 7 年取得永久性居民身分後，公職與司法轉任路徑即開放，屬中長期（非剛畢業）職涯統計，本平台以敘述呈現、不計入初次就業分布。私人執業（律所、企業法務）可經 IANG 等簽證途徑，不受此限。",
       "employment": {
         "red_circle": 0.03, "magic_circle": 0.10, "intl_firm": 0.20, "boutique_firm": 0.08,
-        "general_firm": 0.22, "judge": 0.005, "prosecutor": 0.005, "in_house": 0.21,
-        "civil_servant": 0.01, "academia": 0.03, "other": 0.11
+        "general_firm": 0.23, "judge": 0.0, "prosecutor": 0.0, "in_house": 0.22,
+        "civil_servant": 0.0, "academia": 0.03, "other": 0.11
       },
-      "source": { "type": "香港政府＋制度限制修正", "name": "教資會 UGC 畢業生就業統計；香港公務員入職之永久居民要求", "url": "https://www.ugc.edu.hk/", "year": 2023, "credibility": "medium" }
+      "source": { "type": "香港政府＋法定限制", "name": "教資會 UGC 畢業生就業統計；《香港基本法》第 99 條（公務人員須為永久性居民）；公務員事務局聘任政策", "url": "https://www.basiclaw.gov.hk/", "year": 2024, "credibility": "high" }
     },
     "hku_af": {
       "regionalSalaryFactor": 1.0,

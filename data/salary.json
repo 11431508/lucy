@@ -10,6 +10,36 @@
     { "name": "HKU CEDARS Graduate Employment Survey（全校月薪中位數 HK$27,600）", "url": "https://www.cedars.hku.hk/careers/graduate-employment-survey", "year": 2024, "credibility": "high" },
     { "name": "司法院法官俸給（候補法官含專業加給約 13 萬/月）", "url": "https://www.judicial.gov.tw/", "year": 2024, "credibility": "high" }
   ],
+  "careerSources": {
+    "comment": "逐職涯薪資引用。official=true 為政府法規／官方統計；official=false 為大型市場調查（私部門薪資無政府公布資料，僅能以調查佐證）。台灣公部門採 ntu_law schoolOverrides 之絕對值，其依據列於對應職涯。",
+    "law": {
+      "red_circle":    { "name": "律新社／行業薪酬調查（方達起薪 RMB 25k 等公開報導，2024 起普遍降薪 10–30%）", "url": "https://www.lvxinnews.com/", "year": 2024, "official": false, "credibility": "medium" },
+      "magic_circle":  { "name": "Robert Walters Hong Kong Salary Survey（律所 Trainee／NQ 薪酬區間）", "url": "https://www.robertwalters.com.hk/our-services/salary-survey.html", "year": 2024, "official": false, "credibility": "medium" },
+      "intl_firm":     { "name": "Robert Walters／Michael Page 法律類薪酬指南", "url": "https://www.robertwalters.com.hk/our-services/salary-survey.html", "year": 2024, "official": false, "credibility": "medium" },
+      "boutique_firm": { "name": "台灣：勞動部職類別薪資調查（律師）；港陸：法律獵頭薪酬指南", "url": "https://pswst.mol.gov.tw/psdn/", "year": 2024, "official": true, "credibility": "medium" },
+      "general_firm":  { "name": "台灣：勞動部職類別薪資調查（律師受僱起薪）；港陸：行業調查", "url": "https://pswst.mol.gov.tw/psdn/", "year": 2024, "official": true, "credibility": "medium" },
+      "judge":         { "name": "法官法第 71 條法官（檢察官）薪俸專業及職務加給表＋司法院俸給表（候補法官月薪 10 萬以上）", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=A0030243&flno=71", "year": 2024, "official": true, "credibility": "high" },
+      "prosecutor":    { "name": "法官法第 71 條（法官檢察官同表）＋法務部", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=A0030243&flno=71", "year": 2024, "official": true, "credibility": "high" },
+      "in_house":      { "name": "勞動部職類別薪資調查（法務人員）／104 薪資情報", "url": "https://pswst.mol.gov.tw/psdn/", "year": 2024, "official": true, "credibility": "medium" },
+      "civil_servant": { "name": "行政院人事行政總處 全國軍公教員工待遇支給要點（高考三級起敘俸額）", "url": "https://www.dgpa.gov.tw/", "year": 2024, "official": true, "credibility": "high" },
+      "academia":      { "name": "教育部 大專校院教師本薪與學術研究加給標準（助理教授）", "url": "https://www.edu.tw/", "year": 2024, "official": true, "credibility": "high" },
+      "other":         { "name": "主計總處受僱員工薪資統計／各地綜合調查", "url": "https://www.dgbas.gov.tw/", "year": 2024, "official": true, "credibility": "medium" }
+    },
+    "finance": {
+      "ib":            { "name": "Glassdoor HK／levels.fyi（Analyst 底薪 HK$850–950k/年；無官方資料）", "url": "https://www.glassdoor.com.hk/Salaries/investment-banking-analyst-salary-SRCH_KO0,26.htm", "year": 2024, "official": false, "credibility": "medium" },
+      "pe":            { "name": "levels.fyi／獵頭薪酬報告（無官方資料）", "url": "https://www.levels.fyi/t/investment-banker/locations/greater-hong-kong-area", "year": 2024, "official": false, "credibility": "medium" },
+      "hf":            { "name": "levels.fyi／獵頭薪酬報告（無官方資料）", "url": "https://www.levels.fyi/", "year": 2024, "official": false, "credibility": "low" },
+      "am":            { "name": "Robert Walters HK 金融類薪酬指南", "url": "https://www.robertwalters.com.hk/our-services/salary-survey.html", "year": 2024, "official": false, "credibility": "medium" },
+      "commercial":    { "name": "JobsDB HK 薪酬調查／銀行公開招聘", "url": "https://hk.jobsdb.com/", "year": 2024, "official": false, "credibility": "medium" },
+      "corp_finance":  { "name": "JobsDB／Michael Page 薪酬指南", "url": "https://hk.jobsdb.com/", "year": 2024, "official": false, "credibility": "medium" },
+      "big4_audit":    { "name": "四大公開招聘資訊＋HKICPA 薪酬調查（Associate 約 HK$18–19k/月）", "url": "https://www.hkicpa.org.hk/", "year": 2024, "official": false, "credibility": "medium" },
+      "big4_advisory": { "name": "四大公開招聘資訊＋獵頭薪酬指南", "url": "https://www.hkicpa.org.hk/", "year": 2024, "official": false, "credibility": "medium" },
+      "consulting":    { "name": "Management Consulted／獵頭薪酬報告", "url": "https://managementconsulted.com/consulting-salaries/", "year": 2024, "official": false, "credibility": "medium" },
+      "fin_analyst":   { "name": "JobsDB HK 薪酬調查", "url": "https://hk.jobsdb.com/", "year": 2024, "official": false, "credibility": "medium" },
+      "fintech":       { "name": "levels.fyi／JobsDB 科技金融類", "url": "https://www.levels.fyi/", "year": 2024, "official": false, "credibility": "medium" },
+      "other":         { "name": "HKU CEDARS GES（全校月薪中位數 HK$27,600，官方）", "url": "https://www.cedars.hku.hk/careers/graduate-employment-survey", "year": 2024, "official": true, "credibility": "high" }
+    }
+  },
   "fields": [
     { "key": "starting",    "label": "起薪",       "type": "money" },
     { "key": "y3",          "label": "三年薪資",   "type": "money" },

@@ -53,7 +53,7 @@ export function runAnalysis(db, input) {
       fitDetail: fit[s.id],
       ranking: ranking.records[s.id],
       school: s,
-      text: buildNarrative(s, { lifeScore, salScore, fitScore }, salaryScores[s.id], ranking.records[s.id], formula, input.prBand),
+      text: buildNarrative(s, { lifeScore, salScore, fitScore }, salaryScores[s.id], ranking.records[s.id], formula, input.prBand, salary.careerSources?.[s.careerSetId]),
     };
   });
 
@@ -69,9 +69,10 @@ export function runAnalysis(db, input) {
  * @param {object} rank 排名資料
  * @param {object} formula 公式設定
  * @param {string} prBand PR 區間鍵
+ * @param {Object<string,object>|undefined} careerSources 該職涯集合之逐職涯薪資來源表
  * @returns {object} 各段落敘述字串／陣列
  */
-function buildNarrative(s, scores, salaryDetail, rank, formula, prBand) {
+function buildNarrative(s, scores, salaryDetail, rank, formula, prBand, careerSources) {
   const n = s.narrative;
   const topCareers = salaryDetail.careers.slice(0, 3);
   const topCareerLabels = topCareers.map((c) => `${c.label}（${formatPercent(c.prRatio, 0)}）`).join('、');
@@ -100,7 +101,19 @@ function buildNarrative(s, scores, salaryDetail, rank, formula, prBand) {
     .map((src) => `${src.name}（${src.type}，${src.year}，可信度：${formatCredibility(src.credibility)}）${src.url}`)
     .join('；');
 
+  // 逐職涯薪資引用：僅列該校有實際分布（比例>0）之職涯，官方／市場調查分別標示。
+  const salarySources = careerSources
+    ? salaryDetail.careers
+        .filter((c) => c.baseRatio > 0 && careerSources[c.id])
+        .map((c) => {
+          const src = careerSources[c.id];
+          return `${c.label}：${src.name}（${src.year}，${src.official ? '官方' : '市場調查'}，可信度：${formatCredibility(src.credibility)}）${src.url}`;
+        })
+        .join('；')
+    : '';
+
   return {
+    salarySources,
     positioning: n.positioning,
     strengths: n.strengths,
     weaknesses: n.weaknesses,
