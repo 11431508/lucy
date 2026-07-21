@@ -75,17 +75,62 @@ function render({ abroad: data, school }) {
   const results = computeAbroad(data);
   const dims = data.dimensions;
   const schoolAbroad = computeSchoolAbroad(data, school);
+  const appF = data.schoolAbroad.applicationFactors;
+  const devF = data.schoolAbroad.developmentFactors;
+
+  const m = data.schoolAbroad.scoreModel;
   const saRows = schoolAbroad
     .map(
       (r) => `<tr>
         <td>${r.name}</td>
-        <td class="score-cell">${r.applicationScore}</td>
+        <td class="score-cell" style="color:var(--accent-3)">${r.topSchoolRate}%</td>
+        <td class="score-cell">${r.normRate}</td>
         <td class="score-cell">${r.developmentValue}</td>
-        <td class="score-cell" style="color:var(--accent-3)">${r.expectedValue}</td>
-        <td>${r.recommendedPath}</td>
-        <td class="rationale">${r.note}</td>
+        <td class="score-cell" style="color:var(--accent-2)">${r.expectedValue}</td>
+        <td>${r.targetDegree}</td>
       </tr>`
     )
+    .join('');
+
+  // 各校八因子拆解卡（申請 4 因子＋發展 4 因子，每項分數＋依據），並附來源。
+  const factorRow = (f, score, why) =>
+    `<tr><td>${f.label}</td><td class="score-cell">${score}</td><td class="rationale">${why}</td></tr>`;
+  const saBreakdown = schoolAbroad
+    .map((r) => {
+      const appRows = appF.map((f) => factorRow(f, r.application[f.key], r.rationale[f.key])).join('');
+      const devRows = devF.map((f) => factorRow(f, r.development[f.key], r.rationale[f.key])).join('');
+      const srcs = r.sources
+        .map((s) => `${s.name}（${s.year}，${s.official ? '官方' : '調查'}，可信度：${formatCredibility(s.credibility)}）${s.url}`)
+        .join('；');
+      return `
+        <article class="result-card glass" data-animate>
+          <div class="result-head">
+            <div>
+              <h2>${r.name}</h2>
+              <p class="positioning">目標學位：${r.targetDegree}｜建議路徑：${r.recommendedPath}</p>
+            </div>
+            <div class="result-scores">
+              <div class="big-total">${r.expectedValue}<span>/10 升學分數</span></div>
+              <div class="score-triple">
+                <div><b>${r.topSchoolRate}%</b><span>頂級升學率</span></div>
+                <div><b>${r.developmentValue}</b><span>發展</span></div>
+                <div><b>${r.applicationScore}</b><span>申請(輔)</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="detail-note">升學分數 = ${m.topSchoolWeight}×標準化頂級升學率(${r.topSchoolRate}%→${r.normRate}) + ${m.developmentWeight}×發展(${r.developmentValue}) = ${r.expectedValue}。頂級升學率佔主要。</p>
+          <p class="detail-note" style="color:var(--accent-3)">頂級升學率依據：${r.topSchoolNote}</p>
+          <div class="table-scroll">
+            <table class="detail-table abroad-table">
+              <thead><tr><th>申請因子（4）</th><th>分數</th><th>依據</th></tr></thead>
+              <tbody>${appRows}</tbody>
+              <thead><tr><th>發展因子（4）</th><th>分數</th><th>依據</th></tr></thead>
+              <tbody>${devRows}</tbody>
+            </table>
+          </div>
+          <div class="result-block"><h4>資料來源</h4><p class="sources">${srcs}</p></div>
+        </article>`;
+    })
     .join('');
 
   const policyUS = data.policySnapshot.us.map((t) => `<li>${t}</li>`).join('');
@@ -151,14 +196,16 @@ function render({ abroad: data, school }) {
         <div class="step-card-head">
           <span class="step-badge">四校留學跳板</span>
           <h2>四所學校的留學評分（申請）與期望值（發展）</h2>
-          <p class="step-sub">假設學士於 ${data.schoolAbroad.graduateYear} 年 5–6 月畢業，出國決策點為學士後。期望值＝(申請/10)×發展，即以錄取可行性折算後之風險調整發展期望。</p>
+          <p class="step-sub">假設學士於 ${data.schoolAbroad.graduateYear} 年 5–6 月畢業，出國決策點為學士後。升學分數＝${m.topSchoolWeight}×標準化(頂級升學率)＋${m.developmentWeight}×發展價值，頂級升學率佔主要。不打算升學者可於主頁權重步驟將『升學』設 0。</p>
         </div>
         <div class="table-scroll">
           <table class="detail-table abroad-table">
-            <thead><tr><th>學校</th><th>申請實力</th><th>發展價值</th><th>期望值</th><th>建議路徑</th><th>說明</th></tr></thead>
+            <thead><tr><th>學校</th><th>頂級升學率</th><th>標準化(0–10)</th><th>發展價值</th><th>升學分數</th><th>目標學位</th></tr></thead>
             <tbody>${saRows}</tbody>
           </table>
         </div>
+        <p class="detail-note">頂級升學率＝進入 T14/M7 等頂級海外學校之估計比例（主要成分，每 ${m.ratePerPoint}%＝1 分、上限 ${m.rateCap}）；發展價值＝4 因子平均（次要）。各因子分數、依據與來源見下方逐校拆解。</p>
+        <div class="result-cards" style="margin-top:16px">${saBreakdown}</div>
       </section>
 
       <section class="step-card glass" data-animate>

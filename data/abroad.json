@@ -106,32 +106,123 @@
   ],
 
   "schoolAbroad": {
-    "comment": "四校各自作為『留學跳板』之評分。applicationScore＝以該校學歷申請頂尖海外研究所（法律 LLM/JD、金融 MSF/MBA）之實力與可及性；developmentValue＝出國後之發展價值（資格含金量、留當地或回亞洲之綜合報酬）。expectedValue＝期望值＝(applicationScore/10)×developmentValue，即以錄取可行性折算後之發展期望（風險調整）。graduateYear 假設學士於 2030/5–6 畢業，出國決策點為學士後。",
+    "comment": "升學分數『以頂級海外學校升學比例為主』：topSchoolRate＝該校畢業生進入頂級海外學校之估計比例（法律→美 T6/T14 LLM或JD、英 Oxbridge/LSE LLM；金融→M7 MBA或頂尖 MSc Finance）。expectedValue（升學分數）＝topSchoolWeight×標準化(topSchoolRate)＋developmentWeight×發展價值，頂級升學率佔主要。applicationScore（申請 4 因子平均）僅作為輔助說明，不主導分數。已內建科系差異與台籍身分。不打算升學者：於權重步驟將『升學』權重設 0，綜合評分二即不計升學。graduateYear 假設學士 2030/5–6 畢業，出國決策點為學士後。",
     "graduateYear": 2030,
+    "scoreModel": {
+      "topSchoolWeight": 0.75,
+      "developmentWeight": 0.25,
+      "ratePerPoint": 1.5,
+      "rateCap": 10,
+      "comment": "升學分數 = 0.75×標準化(頂級升學率) + 0.25×發展價值。標準化：每 1.5% 頂級升學率 = 1 分，上限 10 分。頂級升學率為估計值（各校未公布『進入 T14/M7 之比例』），credibility 標為 low–medium，可於本檔調整。"
+    },
+    "topTierDefinition": {
+      "law": "美國 T6/T14 法學院 LLM 或 JD、英國 Oxbridge／LSE LLM",
+      "finance": "M7 MBA 或頂尖 MSc Finance（LBS、Oxford、MIT、LSE 等）"
+    },
+    "applicationFactors": [
+      { "key": "brand",         "label": "學校品牌／國際認可" },
+      { "key": "deptFit",       "label": "科系與目標學位銜接" },
+      { "key": "gradCulture",   "label": "該系升學／出國傳統與升學率" },
+      { "key": "langCurriculum","label": "語言與課程銜接" }
+    ],
+    "developmentFactors": [
+      { "key": "degreeValue",   "label": "目標學位含金量" },
+      { "key": "citizenship",   "label": "台籍身分下資格可用性" },
+      { "key": "returnValue",   "label": "回台／亞洲市場報酬" },
+      { "key": "fieldROI",      "label": "該領域出國投報" }
+    ],
     "records": {
       "ntu_law": {
-        "applicationScore": 9,
-        "developmentValue": 9,
         "recommendedPath": "tw_llm",
-        "note": "台大法律為台灣頂尖 LLM/JD 申請跳板，GPA 與推薦體系受美英名校認可；『台大法律＋美國 T10 LLM＋NY Bar』為台灣涉外法律圈主流菁英路徑，回台溢價明確。可及性與發展價值皆最高。"
-      },
-      "pku_law": {
-        "applicationScore": 8,
-        "developmentValue": 6,
-        "recommendedPath": "tw_llm",
-        "note": "北大品牌對海外研究所申請有力，惟課程與資格以中國法為主，轉普通法（LLM/JD）需重讀；中國法律市場 2026 下行使『留陸發展』價值下滑，出國後回台仍須考台灣律師，發展價值中等。"
+        "targetDegree": "美國 T14 LLM ＋ 紐約州律師（NY Bar）",
+        "topSchoolRate": 12,
+        "topSchoolNote": "台大法律頂尖生赴美 T14 LLM 傳統極強，設專屬留學獎學金（林裕量、大勝／眾嘉 NT$300萬/150萬），估全體約 12% 進入頂級 LLM/JD，為四校最高。（估計值，credibility: medium）",
+        "application":  { "brand": 8, "deptFit": 9, "gradCulture": 9, "langCurriculum": 6 },
+        "development":  { "degreeValue": 8, "citizenship": 9, "returnValue": 9, "fieldROI": 7 },
+        "rationale": {
+          "brand": "台大為台灣第一學府，於美英 LLM 招生端認可度高；惟世界排名中段（QS 約 68），品牌力略遜北大／港大。",
+          "deptFit": "法律系直接對接 LLM/JD，學分與先修完美銜接，無需重讀基礎法。",
+          "gradCulture": "出國 LLM 傳統極強：法律學院設專屬留學獎學金（林裕量、大勝／眾嘉 NT$300萬/150萬赴美 LLM/JD、Himalaya 英美博士），頂尖生大量錄取 T14。",
+          "langCurriculum": "中文授課、台灣法為主，需另補法律英語與托福，銜接普通法課程有摩擦。",
+          "degreeValue": "美國 T14 LLM＋NY Bar 為全球認可之涉外資格。",
+          "citizenship": "台籍完全可用，無身分限制；為回台涉外執業之主流合法路徑。",
+          "returnValue": "『台大法律＋美 LLM＋NY Bar』為台灣涉外所（理律、萬國等）主流菁英履歷，回台溢價明確。",
+          "fieldROI": "LLM 僅 1 年、成本相對低，資格投報佳；惟留美就業難度高，多返台。"
+        },
+        "sources": [
+          { "name": "台大法律學院『學生出國／海外教育』（留學獎學金、赴美 LLM/JD 傳統）", "url": "https://www.law.ntu.edu.tw/index.php/海外教育", "year": 2025, "official": true, "credibility": "high" },
+          { "name": "教育部 大專校院畢業生流向調查（法律學門深造比例）", "url": "https://www.edu.tw/", "year": 2023, "official": true, "credibility": "medium" },
+          { "name": "紐約州律師考試 外國法學位應考資格（LLM cure）", "url": "https://www.nybarexam.org/Foreign/ForeignLegalEducation.htm", "year": 2026, "official": true, "credibility": "high" }
+        ]
       },
       "cuhk_law": {
-        "applicationScore": 8,
-        "developmentValue": 8,
         "recommendedPath": "uk_llb",
-        "note": "已為普通法 LLB、全英語授課，是美英 LLM 之理想銜接；本身即具香港執業潛力，出國深造為加值而非必需，發展彈性高（香港／英國／回台）。"
+        "targetDegree": "美／英 LLM（承接普通法 LLB）",
+        "topSchoolRate": 7,
+        "topSchoolNote": "普通法 LLB＋全英語利於美英頂尖 LLM 申請，惟出國深造之整體人數與頂級錄取規模小於台大 LLM 傳統，估約 7% 進入頂級 LLM。（估計值，credibility: low）",
+        "application":  { "brand": 8, "deptFit": 9, "gradCulture": 7, "langCurriculum": 9 },
+        "development":  { "degreeValue": 8, "citizenship": 8, "returnValue": 8, "fieldROI": 7 },
+        "rationale": {
+          "brand": "中大 QS 約 36，國際認可度高，商法／比較法研究能見度佳。",
+          "deptFit": "本身即普通法 LLB，直接對接美英 LLM，銜接度高。",
+          "gradCulture": "香港法學院國際化、交換與海外深造管道成熟，惟出國深造比例低於台大 LLM 傳統。",
+          "langCurriculum": "全英語授課＋普通法基礎，銜接美英 LLM 最順暢（四校最佳）。",
+          "degreeValue": "普通法 LLB＋LLM 為國際流通資格。",
+          "citizenship": "台籍私人執業（律所、企業法務）可用；惟香港公職與司法須永久性居民（居港滿 7 年後開放）。",
+          "returnValue": "香港／英國／回台皆高度認可，普通法背景利於跨境。",
+          "fieldROI": "LLB 已具執業潛力，出國為加值而非必需，投報穩健。"
+        },
+        "sources": [
+          { "name": "教資會 UGC 畢業生就業統計（法律學門）", "url": "https://www.ugc.edu.hk/", "year": 2023, "official": true, "credibility": "medium" },
+          { "name": "《香港基本法》第 99 條（公務人員須永久性居民）", "url": "https://www.basiclaw.gov.hk/", "year": 2024, "official": true, "credibility": "high" },
+          { "name": "QS World University Rankings（CUHK Law 學科排名）", "url": "https://www.topuniversities.com/", "year": 2025, "official": false, "credibility": "medium" }
+        ]
       },
       "hku_af": {
-        "applicationScore": 8,
-        "developmentValue": 7,
         "recommendedPath": "finance_grad",
-        "note": "港大會金屬金融領域，留學路徑為美英頂尖 MSc Finance／MBA／目標院校（非法律 JD/LLB）；品牌與量化背景為 target school 申請強項，惟金融碩士 ROI 高度取決於就業市場，發展價值良好但波動較大。"
+        "targetDegree": "美／英頂尖 MSc Finance／MBA／目標院校（非法律路徑）",
+        "topSchoolRate": 8,
+        "topSchoolNote": "港大 QS 高、商科為歐美 target school，HKU 整體升學率約 22%（2024），惟商科多直接就業、頂級 MSF/MBA 為其中子集，估約 8% 進入頂級金融碩士／MBA。（估計值，credibility: low）",
+        "application":  { "brand": 9, "deptFit": 7, "gradCulture": 6, "langCurriculum": 9 },
+        "development":  { "degreeValue": 7, "citizenship": 8, "returnValue": 7, "fieldROI": 6 },
+        "rationale": {
+          "brand": "港大 QS 約 17、商學院亞洲頂尖，為歐美商研 target school，品牌力四校最強。",
+          "deptFit": "金融系對接 MSc Finance/MBA 銜接良好；惟屬金融深造，非本模組之法律 JD/LLB 路徑。",
+          "gradCulture": "HKU 官方整體升學率約 22%（2024），商科多直接就業（Commerce & Industry 45.9%），出國深造比例相對低。",
+          "langCurriculum": "全英語＋量化訓練，申請歐美商研競爭力強。",
+          "degreeValue": "頂尖 MSF/MBA 含金量高，惟報酬高度取決就業市場。",
+          "citizenship": "金融資格無國籍限制，全球流通，台籍不受身分限制。",
+          "returnValue": "回台／香港／新加坡金融圈認可度高。",
+          "fieldROI": "港大會金本科就業已強，金融碩士邊際效益與 ROI 波動較大。"
+        },
+        "sources": [
+          { "name": "HKU CEDARS Graduate Employment Survey（整體升學率約 22%，2024）", "url": "https://www.cedars.hku.hk/careers/graduate-employment-survey", "year": 2024, "official": true, "credibility": "high" },
+          { "name": "HKU BFin 就業調查（商科就業／深造去向）", "url": "https://ug.hkubs.hku.hk/programme/degree-programmes/bfin-ampb/bfin-ampb-graduation-employment-survey", "year": 2024, "official": true, "credibility": "high" },
+          { "name": "QS World University Rankings（HKU 綜合與商科）", "url": "https://www.topuniversities.com/", "year": 2025, "official": false, "credibility": "medium" }
+        ]
+      },
+      "pku_law": {
+        "recommendedPath": "tw_llm",
+        "targetDegree": "美／英 LLM（需自中國法轉普通法）",
+        "topSchoolRate": 6,
+        "topSchoolNote": "北大品牌利於申請，惟升學／出國多為陸內保研或英美一般申請，且中國法背景轉普通法有落差、對台生頂級 LLM 管道較不對口，估約 6% 進入頂級 LLM。（估計值，credibility: low）",
+        "application":  { "brand": 9, "deptFit": 7, "gradCulture": 8, "langCurriculum": 5 },
+        "development":  { "degreeValue": 7, "citizenship": 5, "returnValue": 6, "fieldROI": 6 },
+        "rationale": {
+          "brand": "北大 QS 約 14、四校最高，品牌對海外研究所招生極有力。",
+          "deptFit": "法律學位可對接 LLM，惟課程以中國法為主，轉普通法需重讀基礎，銜接有落差。",
+          "gradCulture": "北大升學／出國文化強（保研＋留學），惟資源多對口陸內深造或英美一般申請，對『台籍＋回台』路徑較不對口。",
+          "langCurriculum": "中文授課＋中國法體系，法律英語與普通法銜接為四校最弱。",
+          "degreeValue": "LLM 學位本身含金量尚可。",
+          "citizenship": "台籍關鍵弱點：中國體制內（法官／檢察官／公務員）封閉；北大中國法學歷回台採認與轉考成本高，資格可用性低。",
+          "returnValue": "回台市場對『北大中國法』背景認可度低於台大，涉外溢價有限。",
+          "fieldROI": "中國經濟與法律市場 2026 下行，留陸發展價值下滑，出國後仍須考台灣律師，整體投報中等偏低。"
+        },
+        "sources": [
+          { "name": "北京大學畢業生就業質量年度報告（升學／出國比例）", "url": "https://scc.pku.edu.cn/", "year": 2023, "official": true, "credibility": "medium" },
+          { "name": "台灣：大陸地區學歷採認辦法／律師考試應考資格（回台轉換限制）", "url": "https://www.edu.tw/", "year": 2024, "official": true, "credibility": "high" },
+          { "name": "QS World University Rankings（PKU 綜合排名 QS 14）", "url": "https://www.topuniversities.com/", "year": 2025, "official": false, "credibility": "medium" }
+        ]
       }
     },
     "financeGradPathNote": "港大會金之留學非法律路徑，故不套用三條法律路徑；其 developmentValue 以金融碩士／MBA 之綜合報酬評估。"

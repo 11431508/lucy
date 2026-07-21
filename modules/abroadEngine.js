@@ -41,26 +41,56 @@ export function computeAbroad(abroad) {
 }
 
 /**
- * 計算四校各自之留學跳板評分（申請實力、發展價值、風險調整期望值）。
+ * 由子因子物件計算平均分數。
+ * @param {Array<{key:string}>} factors 因子定義
+ * @param {Object<string,number>} values 子因子分數
+ * @returns {number} 平均值（0–10）
+ */
+function factorMean(factors, values) {
+  const arr = factors.map((f) => values[f.key] ?? 0);
+  return arr.reduce((s, v) => s + v, 0) / arr.length;
+}
+
+/**
+ * 計算四校各自之留學跳板評分。
+ * 升學分數『以頂級海外學校升學比例為主』：
+ *   normRate = min(rateCap, topSchoolRate / ratePerPoint)
+ *   expectedValue = topSchoolWeight×normRate + developmentWeight×developmentValue
+ * applicationScore（申請 4 因子平均）僅作輔助顯示，不主導分數。
  * @param {object} abroad data/abroad.json 內容
  * @param {object} school data/school.json 內容（提供校名）
- * @returns {Array<object>} 依期望值排序之各校結果
- *   每項含 { id, name, applicationScore, developmentValue, expectedValue, recommendedPath, note }
+ * @returns {Array<object>} 依升學分數排序之各校結果，含頂級升學率、發展明細、依據與來源
  */
 export function computeSchoolAbroad(abroad, school) {
-  const recs = abroad.schoolAbroad.records;
+  const sa = abroad.schoolAbroad;
+  const m = sa.scoreModel;
+  const appF = sa.applicationFactors;
+  const devF = sa.developmentFactors;
   const pathName = (pid) => abroad.paths.find((p) => p.id === pid)?.shortName || pid;
   const nameOf = (id) => school.schools.find((s) => s.id === id)?.name || id;
 
-  const out = Object.entries(recs).map(([id, r]) => ({
-    id,
-    name: nameOf(id),
-    applicationScore: r.applicationScore,
-    developmentValue: r.developmentValue,
-    expectedValue: Math.round((r.applicationScore / 10) * r.developmentValue * 10) / 10,
-    recommendedPath: r.recommendedPath === 'finance_grad' ? '金融碩士／MBA' : pathName(r.recommendedPath),
-    note: r.note,
-  }));
+  const out = Object.entries(sa.records).map(([id, r]) => {
+    const applicationScore = factorMean(appF, r.application);
+    const developmentValue = factorMean(devF, r.development);
+    const normRate = Math.min(m.rateCap, r.topSchoolRate / m.ratePerPoint);
+    const expectedValue = m.topSchoolWeight * normRate + m.developmentWeight * developmentValue;
+    return {
+      id,
+      name: nameOf(id),
+      topSchoolRate: r.topSchoolRate,
+      normRate: Math.round(normRate * 10) / 10,
+      applicationScore: Math.round(applicationScore * 10) / 10,
+      developmentValue: Math.round(developmentValue * 10) / 10,
+      expectedValue: Math.round(expectedValue * 10) / 10,
+      recommendedPath: r.recommendedPath === 'finance_grad' ? '金融碩士／MBA' : pathName(r.recommendedPath),
+      targetDegree: r.targetDegree,
+      topSchoolNote: r.topSchoolNote,
+      application: r.application,
+      development: r.development,
+      rationale: r.rationale,
+      sources: r.sources || [],
+    };
+  });
 
   out.sort((a, b) => b.expectedValue - a.expectedValue);
   return out;
