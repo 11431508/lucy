@@ -79,11 +79,13 @@ export function ResultCard(r, rankIndex) {
           <p class="positioning">${t.positioning}</p>
         </div>
         <div class="result-scores">
-          <div class="big-total">${formatScore(r.total)}<span>/100</span></div>
+          <div class="big-total">${formatScore(r.total)}<span>/100 綜合一</span></div>
+          <div class="two-total">綜合二（加升學）<b>${formatScore(r.totalWithAbroad)}</b></div>
           <div class="score-triple">
             <div><b>${formatScore(r.life)}</b><span>生活</span></div>
             <div><b>${formatScore(r.salary)}</b><span>薪資</span></div>
             <div><b>${formatScore(r.fit)}</b><span>適配</span></div>
+            <div><b>${formatScore(r.abroadScore)}</b><span>升學</span></div>
           </div>
         </div>
       </div>

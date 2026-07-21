@@ -10,7 +10,8 @@ import { computeAllLife } from './lifeEngine.js';
 import { computeAllSalary } from './salaryEngine.js';
 import { computeAllFit } from './fitEngine.js';
 import { computeCostIndex } from './costEngine.js';
-import { computeRatios } from './weightEngine.js';
+import { computeRatios, computeRatios4 } from './weightEngine.js';
+import { computeSchoolAbroad } from './abroadEngine.js';
 import { formatScore, formatTWD, formatPercent, formatCredibility } from '../utils/Formatter.js';
 
 /**
@@ -24,20 +25,29 @@ import { formatScore, formatTWD, formatPercent, formatCredibility } from '../uti
  * @returns {{ratios:object, costIndex:object, results:Array<object>}} 分析結果
  */
 export function runAnalysis(db, input) {
-  const { formula, school, city, career, salary, personality, ranking } = db;
+  const { formula, school, city, career, salary, personality, ranking, abroad } = db;
 
+  const abroadWeight = input.weights.abroad ?? formula.weights.abroad.default;
   const ratios = computeRatios(input.weights);
+  const ratios4 = computeRatios4({ ...input.weights, abroad: abroadWeight });
   const { index: costIndex } = computeCostIndex(city, school);
 
   const life = computeAllLife(formula, school, input.lifeRatings);
   const salaryScores = computeAllSalary({ formula, school, career, salary, costIndex, prBand: input.prBand });
   const fit = computeAllFit(formula, school, personality, input.fitAnswers);
 
+  // 各校升學分數（留學期望值，0–10），供綜合評分二與獨立顯示。
+  const abroadList = abroad ? computeSchoolAbroad(abroad, school) : [];
+  const abroadScoreById = Object.fromEntries(abroadList.map((a) => [a.id, a.expectedValue]));
+
   const results = school.schools.map((s) => {
     const lifeScore = life[s.id].score;
     const salScore = salaryScores[s.id].score;
     const fitScore = fit[s.id].score;
+    const abroadScore = abroadScoreById[s.id] ?? 0;
     const total = (lifeScore * ratios.life + salScore * ratios.salary + fitScore * ratios.fit) * 10;
+    const totalWithAbroad =
+      (lifeScore * ratios4.life + salScore * ratios4.salary + fitScore * ratios4.fit + abroadScore * ratios4.abroad) * 10;
 
     return {
       id: s.id,
@@ -45,9 +55,12 @@ export function runAnalysis(db, input) {
       shortName: s.shortName,
       program: s.program,
       total: round(total, 1),
+      totalWithAbroad: round(totalWithAbroad, 1),
       life: lifeScore,
       salary: salScore,
       fit: fitScore,
+      abroadScore,
+      costAdjustedIncome: salaryScores[s.id].costAdjustedIncome,
       lifeDetail: life[s.id],
       salaryDetail: salaryScores[s.id],
       fitDetail: fit[s.id],
@@ -58,7 +71,7 @@ export function runAnalysis(db, input) {
   });
 
   results.sort((a, b) => b.total - a.total);
-  return { ratios, costIndex, results };
+  return { ratios, ratios4, costIndex, results };
 }
 
 /**

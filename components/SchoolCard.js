@@ -24,6 +24,8 @@ export function SchoolCard(result, rankIndex) {
         <span>生活 ${formatScore(result.life)}</span>
         <span>薪資 ${formatScore(result.salary)}</span>
         <span>適配 ${formatScore(result.fit)}</span>
+        <span>升學 ${formatScore(result.abroadScore)}</span>
+        <span class="mini-two">綜合二 ${formatScore(result.totalWithAbroad)}</span>
       </div>
     </div>`;
 }

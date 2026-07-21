@@ -221,6 +221,11 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border: none;
 .detail-table th { color: var(--text-mute); font-weight: 500; }
 
 /* ---------- 升學評分頁 ---------- */
+.soft-divider { border: none; border-top: 1px solid var(--glass-brd); margin: 16px 0; }
+.abroad-weight label { color: var(--accent-3); }
+.two-total { font-size: 0.82rem; color: var(--accent-2); margin: 2px 0 6px; }
+.two-total b { font-size: 1.15rem; margin-left: 4px; }
+.mini-two { background: rgba(91,227,192,0.14) !important; color: var(--accent-2); }
 .note-list { margin: 0; padding-left: 1.2em; font-size: 0.88rem; color: var(--text-dim); }
 .note-list li { margin-bottom: 8px; }
 .table-scroll { overflow-x: auto; }

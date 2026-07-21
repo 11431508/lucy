@@ -13,6 +13,7 @@ const FILES = {
   city: 'data/city.json',
   cost: 'data/cost.json',
   personality: 'data/personality.json',
+  abroad: 'data/abroad.json',
 };
 
 /**

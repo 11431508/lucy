@@ -6,7 +6,7 @@
 
 import { loadAllData } from './modules/dataLoader.js';
 import { runAnalysis } from './modules/analysisEngine.js';
-import { getWeightFields, computeRatios, toPieData } from './modules/weightEngine.js';
+import { getWeightFields, getAbroadWeightField, computeRatios, toPieData } from './modules/weightEngine.js';
 import { getLifeItems } from './modules/lifeEngine.js';
 import { getFitQuestionnaire } from './modules/fitEngine.js';
 
@@ -23,6 +23,7 @@ import { exportNodeToPDF } from './utils/PDF.js';
 import { loadState, saveStateDebounced } from './utils/Storage.js';
 import { crossFade, revealChildren } from './utils/Animation.js';
 import { formatScore, formatPercent } from './utils/Formatter.js';
+import { round } from './utils/Calculation.js';
 
 const STEP_LABELS = ['權重設定', '生活評估', '薪資分析', '科系適配', '分析結果'];
 
@@ -48,7 +49,7 @@ function createInitialState() {
   }
   return {
     step: 1,
-    weights: { life: w.life.default, salary: w.salary.default, fit: w.fit.default },
+    weights: { life: w.life.default, salary: w.salary.default, fit: w.fit.default, abroad: w.abroad.default },
     lifeRatings,
     prBand: firstPR,
     fitAnswers: {},
@@ -73,6 +74,8 @@ async function boot() {
   }
   const saved = loadState();
   state = saved && saved.weights ? saved : createInitialState();
+  // 相容舊版儲存狀態：補上升學權重預設值。
+  if (state.weights.abroad == null) state.weights.abroad = db.formula.weights.abroad.default;
   render();
 }
 
@@ -140,17 +143,27 @@ function renderStep1() {
     )
     .join('');
 
+  const af = getAbroadWeightField(db.formula);
+  const abroadSlider = `
+      <div class="slider-row abroad-weight">
+        <label>${af.label}<span class="hint">（${af.min}–${af.max}，僅計入綜合評分二）</span></label>
+        <input type="range" min="${af.min}" max="${af.max}" step="1" value="${state.weights[af.key]}" data-weight="${af.key}">
+        <output data-weight-out="${af.key}">${state.weights[af.key]}</output>
+      </div>`;
+
   const body = `
     <div class="two-col">
       <div>
-        <p class="lead">自行輸入三項權重，系統將自動正規化為比例。</p>
+        <p class="lead">自行輸入三項核心權重，系統自動正規化為比例（用於綜合評分一）。升學權重另計，僅併入綜合評分二。</p>
         ${sliders}
         <div class="ratio-badges" id="ratioBadges"></div>
+        <hr class="soft-divider">
+        ${abroadSlider}
       </div>
-      ${ChartCard({ canvasId: 'weightPie', title: '權重比例', height: '280px' })}
+      ${ChartCard({ canvasId: 'weightPie', title: '核心權重比例（綜合評分一）', height: '280px' })}
     </div>`;
 
-  return StepCard({ step: 1, title: '權重設定', subtitle: '設定生活、薪資、科系適配的相對重要性', body, showPrev: false });
+  return StepCard({ step: 1, title: '權重設定', subtitle: '設定生活、薪資、科系適配（及升學）的相對重要性', body, showPrev: false });
 }
 
 /** 更新 step1 之比例徽章與圓餅圖。 @returns {void} */
@@ -253,12 +266,47 @@ function renderStep5() {
     prBand: state.prBand,
     fitAnswers: state.fitAnswers,
   });
-  const { ratios, results } = lastAnalysis;
+  const { ratios, ratios4, results } = lastAnalysis;
 
   const summary = results.map((r, i) => SchoolCard(r, i)).join('');
+
+  // 綜合評分一（無升學）／升學分數／綜合評分二（加升學）對照表，依綜合評分二排序另列名次。
+  const byTwo = [...results].sort((a, b) => b.totalWithAbroad - a.totalWithAbroad);
+  const rankTwo = Object.fromEntries(byTwo.map((r, i) => [r.id, i + 1]));
+  const twoScoreRows = results
+    .map((r, i) => {
+      const delta = round(r.totalWithAbroad - r.total, 1);
+      const sign = delta > 0 ? `+${delta}` : `${delta}`;
+      return `<tr>
+        <td>${r.name}</td>
+        <td class="score-cell">${formatScore(r.costAdjustedIncome / 10000, 1)} 萬</td>
+        <td class="score-cell">${formatScore(r.total)}</td>
+        <td class="score-cell" style="color:var(--accent-3)">${formatScore(r.abroadScore)}</td>
+        <td class="score-cell" style="color:var(--accent-2)">${formatScore(r.totalWithAbroad)}</td>
+        <td>#${i + 1} → #${rankTwo[r.id]}</td>
+        <td>${sign}</td>
+      </tr>`;
+    })
+    .join('');
+
+  const twoScoreTable = `
+    <div class="chart-card glass" data-animate>
+      <div class="chart-card-head"><h3>綜合評分一／升學分數／綜合評分二 對照</h3></div>
+      <div class="table-scroll">
+        <table class="detail-table abroad-table">
+          <thead><tr>
+            <th>學校</th><th>實質購買力(月/台北基準)</th><th>綜合評分一<br>(無升學)</th><th>升學分數</th>
+            <th>綜合評分二<br>(加升學)</th><th>名次變化</th><th>Δ</th>
+          </tr></thead>
+          <tbody>${twoScoreRows}</tbody>
+        </table>
+      </div>
+      <p class="detail-note">綜合評分一比例：生活 ${formatPercent(ratios.life, 0)}｜薪資 ${formatPercent(ratios.salary, 0)}｜適配 ${formatPercent(ratios.fit, 0)}。綜合評分二加入升學後四維比例：生活 ${formatPercent(ratios4.life, 0)}｜薪資 ${formatPercent(ratios4.salary, 0)}｜適配 ${formatPercent(ratios4.fit, 0)}｜升學 ${formatPercent(ratios4.abroad, 0)}。薪資分數以實質購買力（期望薪資÷含稅負生活成本指數）為基礎。</p>
+    </div>`;
+
   const charts = `
     <div class="chart-grid">
-      ${ChartCard({ canvasId: 'chTotal', title: '總分比較' })}
+      ${ChartCard({ canvasId: 'chTotal', title: '綜合評分一 vs 綜合評分二' })}
       ${ChartCard({ canvasId: 'chRadar', title: '三維雷達圖' })}
       ${ChartCard({ canvasId: 'chDims', title: '生活／薪資／適配比較' })}
       ${ChartCard({ canvasId: 'chPie', title: '權重比例' })}
@@ -267,7 +315,7 @@ function renderStep5() {
 
   const body = `
     <div class="result-toolbar">
-      <p class="lead">依總分由高至低排列。權重比例：生活 ${formatPercent(ratios.life, 0)}｜薪資 ${formatPercent(ratios.salary, 0)}｜適配 ${formatPercent(ratios.fit, 0)}。</p>
+      <p class="lead">依綜合評分一由高至低排列，並列出升學分數與綜合評分二（加升學）。</p>
       <div class="toolbar-actions">
         <button class="btn btn-ghost" data-action="prev">上一步</button>
         <button class="btn btn-primary" id="btnPDF">下載 PDF 報告</button>
@@ -275,6 +323,7 @@ function renderStep5() {
     </div>
     <div id="resultRoot">
       <div class="summary-row">${summary}</div>
+      ${twoScoreTable}
       ${charts}
       <div class="result-cards">${cards}</div>
     </div>`;
@@ -303,7 +352,10 @@ function postRender() {
 function initResultCharts() {
   const { results, ratios } = lastAnalysis;
   const labels = results.map((r) => r.shortName);
-  Charts.barChart('chTotal', labels, results.map((r) => r.total), '總分');
+  Charts.groupedBar('chTotal', labels, [
+    { label: '綜合評分一（無升學）', data: results.map((r) => r.total) },
+    { label: '綜合評分二（加升學）', data: results.map((r) => r.totalWithAbroad) },
+  ], 100);
   Charts.radarChart('chRadar', ['生活', '薪資', '適配'], results.map((r) => ({ label: r.shortName, data: [r.life, r.salary, r.fit] })));
   Charts.groupedBar('chDims', labels, [
     { label: '生活', data: results.map((r) => r.life) },

@@ -109,13 +109,14 @@ export function barChart(canvasId, labels, data, title) {
 }
 
 /**
- * 分群長條圖（生活／薪資／適配三維度四校比較）。
+ * 分群長條圖（多維度四校比較）。
  * @param {string} canvasId canvas id
  * @param {string[]} labels 學校標籤
  * @param {Array<{label:string, data:number[]}>} series 各維度資料
+ * @param {number} [yMax=10] y 軸上限（分數 0–10 用 10；綜合總分 0–100 用 100）
  * @returns {any} Chart 實例
  */
-export function groupedBar(canvasId, labels, series) {
+export function groupedBar(canvasId, labels, series, yMax = 10) {
   return create(canvasId, {
     type: 'bar',
     data: {
@@ -124,7 +125,7 @@ export function groupedBar(canvasId, labels, series) {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      scales: { y: { beginAtZero: true, max: 10, grid: { color: THEME.grid } }, x: { grid: { display: false } } },
+      scales: { y: { beginAtZero: true, max: yMax, grid: { color: THEME.grid } }, x: { grid: { display: false } } },
       plugins: { legend: { position: 'bottom' } },
     },
   });
