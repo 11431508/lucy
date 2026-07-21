@@ -39,3 +39,29 @@ export function computeAbroad(abroad) {
   results.sort((a, b) => b.total - a.total);
   return results;
 }
+
+/**
+ * 計算四校各自之留學跳板評分（申請實力、發展價值、風險調整期望值）。
+ * @param {object} abroad data/abroad.json 內容
+ * @param {object} school data/school.json 內容（提供校名）
+ * @returns {Array<object>} 依期望值排序之各校結果
+ *   每項含 { id, name, applicationScore, developmentValue, expectedValue, recommendedPath, note }
+ */
+export function computeSchoolAbroad(abroad, school) {
+  const recs = abroad.schoolAbroad.records;
+  const pathName = (pid) => abroad.paths.find((p) => p.id === pid)?.shortName || pid;
+  const nameOf = (id) => school.schools.find((s) => s.id === id)?.name || id;
+
+  const out = Object.entries(recs).map(([id, r]) => ({
+    id,
+    name: nameOf(id),
+    applicationScore: r.applicationScore,
+    developmentValue: r.developmentValue,
+    expectedValue: Math.round((r.applicationScore / 10) * r.developmentValue * 10) / 10,
+    recommendedPath: r.recommendedPath === 'finance_grad' ? '金融碩士／MBA' : pathName(r.recommendedPath),
+    note: r.note,
+  }));
+
+  out.sort((a, b) => b.expectedValue - a.expectedValue);
+  return out;
+}

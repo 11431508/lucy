@@ -4,7 +4,7 @@
  * 以 abroadEngine 計算加權總分，渲染觀念說明、政策快照、路徑比較卡、圖表與客觀結論。
  */
 
-import { computeAbroad } from './modules/abroadEngine.js';
+import { computeAbroad, computeSchoolAbroad } from './modules/abroadEngine.js';
 import * as Charts from './utils/Chart.js';
 import { revealChildren } from './utils/Animation.js';
 import { formatCredibility } from './utils/Formatter.js';
@@ -16,9 +16,13 @@ const appEl = document.getElementById('app');
  * @returns {Promise<object>} 解析後資料
  */
 async function loadData() {
-  const res = await fetch('data/abroad.json', { cache: 'no-store' });
-  if (!res.ok) throw new Error(`載入 data/abroad.json 失敗（HTTP ${res.status}）`);
-  return res.json();
+  const [abroadRes, schoolRes] = await Promise.all([
+    fetch('data/abroad.json', { cache: 'no-store' }),
+    fetch('data/school.json', { cache: 'no-store' }),
+  ]);
+  if (!abroadRes.ok) throw new Error(`載入 data/abroad.json 失敗（HTTP ${abroadRes.status}）`);
+  if (!schoolRes.ok) throw new Error(`載入 data/school.json 失敗（HTTP ${schoolRes.status}）`);
+  return { abroad: await abroadRes.json(), school: await schoolRes.json() };
 }
 
 /**
@@ -67,9 +71,22 @@ function pathCard(r, dims, rankIndex) {
  * @param {object} data abroad.json 內容
  * @returns {void}
  */
-function render(data) {
+function render({ abroad: data, school }) {
   const results = computeAbroad(data);
   const dims = data.dimensions;
+  const schoolAbroad = computeSchoolAbroad(data, school);
+  const saRows = schoolAbroad
+    .map(
+      (r) => `<tr>
+        <td>${r.name}</td>
+        <td class="score-cell">${r.applicationScore}</td>
+        <td class="score-cell">${r.developmentValue}</td>
+        <td class="score-cell" style="color:var(--accent-3)">${r.expectedValue}</td>
+        <td>${r.recommendedPath}</td>
+        <td class="rationale">${r.note}</td>
+      </tr>`
+    )
+    .join('');
 
   const policyUS = data.policySnapshot.us.map((t) => `<li>${t}</li>`).join('');
   const policyUK = data.policySnapshot.uk.map((t) => `<li>${t}</li>`).join('');
@@ -127,6 +144,20 @@ function render(data) {
         </div>
         <div class="result-cards">
           ${results.map((r, i) => pathCard(r, dims, i)).join('')}
+        </div>
+      </section>
+
+      <section class="step-card glass" data-animate>
+        <div class="step-card-head">
+          <span class="step-badge">四校留學跳板</span>
+          <h2>四所學校的留學評分（申請）與期望值（發展）</h2>
+          <p class="step-sub">假設學士於 ${data.schoolAbroad.graduateYear} 年 5–6 月畢業，出國決策點為學士後。期望值＝(申請/10)×發展，即以錄取可行性折算後之風險調整發展期望。</p>
+        </div>
+        <div class="table-scroll">
+          <table class="detail-table abroad-table">
+            <thead><tr><th>學校</th><th>申請實力</th><th>發展價值</th><th>期望值</th><th>建議路徑</th><th>說明</th></tr></thead>
+            <tbody>${saRows}</tbody>
+          </table>
         </div>
       </section>
 

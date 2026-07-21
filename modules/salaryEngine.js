@@ -110,6 +110,7 @@ export function computeAllSalary({ formula, school, career, salary, costIndex, p
     detail[s.id] = {
       rawPoint: round(rawPoint, 3),
       expectedBlended: round(expectedBlended, 0),
+      costAdjustedIncome: round(expectedBlended / idx, 0),
       costIndex: round(idx, 3),
       regionalFactor: factor,
       distribution: adjusted,

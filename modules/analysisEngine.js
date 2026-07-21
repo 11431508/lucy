@@ -84,7 +84,8 @@ function buildNarrative(s, scores, salaryDetail, rank, formula, prBand, careerSo
 
   const salaryAnalysis =
     `期望混合月薪（起薪×${formula.salary.graduateWeight} + 職涯平均×${formula.salary.careerAverageWeight}）約 ${formatTWD(salaryDetail.expectedBlended)}，` +
-    `經生活成本指數 ${formatScore(salaryDetail.costIndex, 2)} 調整後，薪資標準化分數為 ${formatScore(scores.salScore)} / 10。`;
+    `除以當地生活成本指數 ${formatScore(salaryDetail.costIndex, 2)} 後，實質購買力相當於台北 ${formatTWD(salaryDetail.costAdjustedIncome)}（可支配物質水平基準）；` +
+    `四校標準化後薪資分數為 ${formatScore(scores.salScore)} / 10。`;
 
   const lifeAnalysis =
     `生活分數 ${formatScore(scores.lifeScore)} / 10，涵蓋生活成就感、校園環境、生活環境與城市四項加權評估。`;

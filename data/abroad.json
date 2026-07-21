@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "updatedAt": "2026-07-20",
+  "version": "1.1.0",
+  "updatedAt": "2026-07-21",
   "audience": "台灣地區身分申請人（高中畢業起算）",
   "fx": { "USD_TWD": 32, "GBP_TWD": 40, "note": "匯率為 2026 年中概略值，僅供換算展示。" },
 
@@ -104,6 +104,38 @@
       }
     }
   ],
+
+  "schoolAbroad": {
+    "comment": "四校各自作為『留學跳板』之評分。applicationScore＝以該校學歷申請頂尖海外研究所（法律 LLM/JD、金融 MSF/MBA）之實力與可及性；developmentValue＝出國後之發展價值（資格含金量、留當地或回亞洲之綜合報酬）。expectedValue＝期望值＝(applicationScore/10)×developmentValue，即以錄取可行性折算後之發展期望（風險調整）。graduateYear 假設學士於 2030/5–6 畢業，出國決策點為學士後。",
+    "graduateYear": 2030,
+    "records": {
+      "ntu_law": {
+        "applicationScore": 9,
+        "developmentValue": 9,
+        "recommendedPath": "tw_llm",
+        "note": "台大法律為台灣頂尖 LLM/JD 申請跳板，GPA 與推薦體系受美英名校認可；『台大法律＋美國 T10 LLM＋NY Bar』為台灣涉外法律圈主流菁英路徑，回台溢價明確。可及性與發展價值皆最高。"
+      },
+      "pku_law": {
+        "applicationScore": 8,
+        "developmentValue": 6,
+        "recommendedPath": "tw_llm",
+        "note": "北大品牌對海外研究所申請有力，惟課程與資格以中國法為主，轉普通法（LLM/JD）需重讀；中國法律市場 2026 下行使『留陸發展』價值下滑，出國後回台仍須考台灣律師，發展價值中等。"
+      },
+      "cuhk_law": {
+        "applicationScore": 8,
+        "developmentValue": 8,
+        "recommendedPath": "uk_llb",
+        "note": "已為普通法 LLB、全英語授課，是美英 LLM 之理想銜接；本身即具香港執業潛力，出國深造為加值而非必需，發展彈性高（香港／英國／回台）。"
+      },
+      "hku_af": {
+        "applicationScore": 8,
+        "developmentValue": 7,
+        "recommendedPath": "finance_grad",
+        "note": "港大會金屬金融領域，留學路徑為美英頂尖 MSc Finance／MBA／目標院校（非法律 JD/LLB）；品牌與量化背景為 target school 申請強項，惟金融碩士 ROI 高度取決於就業市場，發展價值良好但波動較大。"
+      }
+    },
+    "financeGradPathNote": "港大會金之留學非法律路徑，故不套用三條法律路徑；其 developmentValue 以金融碩士／MBA 之綜合報酬評估。"
+  },
 
   "verdict": {
     "title": "是否有必要留美？（客觀結論）",
