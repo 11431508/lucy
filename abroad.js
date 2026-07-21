@@ -153,6 +153,9 @@ function render({ abroad: data, school }) {
     </header>
 
     <main class="content">
+      <div class="disclaimer-banner glass" data-animate>
+        ⚠ <strong>資料準確性聲明：</strong>各校「頂級升學率」（進入 T14/M7 之比例）及薪資、政策數字<strong>多為估計值，來源不保證準確</strong>——各校並未公布此類比例，本頁數字係依官方就業報告、升學傳統與公開資訊<strong>推估</strong>（credibility 多標為 low–medium）。請勿當作官方事實，重大決定前務必自行查證最新規定。
+      </div>
       <section class="step-card glass" data-animate>
         <div class="step-card-head">
           <span class="step-badge">觀念修正</span>
@@ -223,7 +226,8 @@ function render({ abroad: data, school }) {
     </main>
 
     <footer class="app-footer">
-      <p>資料版本 ${data.version}（${data.updatedAt}）｜分數為多來源綜合評估之決策參考，政策具時效性，重大決定前請再確認最新規定。</p>
+      <p class="disclaimer-strong">⚠ 資料準確性聲明：頂級升學率、薪資與政策數字<strong>多為估計值，來源不保證準確</strong>，僅供決策參考；政策具時效性，重大決定前請自行查證最新官方規定。</p>
+      <p>資料版本 ${data.version}（${data.updatedAt}）。</p>
     </footer>`;
 
   bindEvents();

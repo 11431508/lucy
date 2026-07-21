@@ -233,9 +233,20 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border: none;
 .abroad-table td.score-cell { font-weight: 700; color: var(--accent-2); text-align: center; }
 .nav-abroad { text-decoration: none; }
 
+/* ---------- 免責／資料準確性 ---------- */
+.disclaimer-banner {
+  padding: 14px 18px; margin-bottom: 18px; font-size: 0.86rem; line-height: 1.7;
+  color: #ffd9a8; border-color: rgba(255,184,107,0.4);
+  background: linear-gradient(180deg, rgba(255,184,107,0.14), rgba(255,122,156,0.08));
+}
+.disclaimer-banner strong { color: var(--accent-3); }
+.disclaimer-strong { color: #ffd0b0; font-weight: 500; }
+.disclaimer-strong strong { color: var(--accent-3); }
+
 /* ---------- 頁尾 ---------- */
 .app-footer { padding: 20px; text-align: center; color: var(--text-mute); font-size: 0.8rem; }
 .app-footer .muted { opacity: 0.7; }
+.app-footer .disclaimer-strong { max-width: 760px; margin: 0 auto 8px; }
 
 /* ---------- 載入與錯誤 ---------- */
 .boot, .fatal { padding: 40px; text-align: center; margin: 40px auto; max-width: 640px; }
